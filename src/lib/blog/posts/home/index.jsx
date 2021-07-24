@@ -23,7 +23,7 @@ export default function Blog() {
         return (
             <>
                 <Center maxWidth='100vw'>
-                    <Stack p='8'>
+                    <Stack maxWidth='80vw' p='2'>
                         <Center className='bg-change' minH='20vh' borderRadius='xl' p='2'>
                             <Heading fontSize='2xl' textColor='white' textAlign='center'>Hello friends 👋. Welcome to my blog 🚀.</Heading>
                         </Center>

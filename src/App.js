@@ -15,16 +15,16 @@ function App() {
     <Router>
       <Navbar></Navbar>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/personal_blog/">
           <Blog></Blog>
         </Route>
-        <Route exact path="/admin">
+        <Route exact path="/personal_blog/admin">
           <AddPost></AddPost>
         </Route>
-        <Route exact path="/daily">
+        <Route exact path="/personal_blog/daily">
           <PostList cat='daily'></PostList>
         </Route>
-        <Route exact path="/tutorials">
+        <Route exact path="/personal_blog/tutorials">
           <PostList cat='tutorial'></PostList>
         </Route>
       </Switch>

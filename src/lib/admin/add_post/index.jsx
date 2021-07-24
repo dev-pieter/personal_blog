@@ -5,7 +5,7 @@ import { Input, Textarea } from "@chakra-ui/react"
 import { useMutation } from 'react-query'
 import axios from 'axios'
 
-const base_url = 'http://178.128.168.53:3000'
+const base_url = 'https://goodoakfurniture.co.za'
 
 export default function AddPost() {
     const [data, setData] = useState({
