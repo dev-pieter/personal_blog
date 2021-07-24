@@ -4,30 +4,37 @@
 
 @keyframes bgcolor {
   0% {
-      background-color: #45a3e5
+      background-color: #fc466a9a
   }
 
   30% {
-      background-color: #66bf39
+      background-color: #3f5efb85
   }
 
   60% {
-      background-color: #eb670f
+      background-color: #fc466a9a
   }
 
   90% {
-      background-color: #f35
+      background-color: #3f5efb85
   }
 
   100% {
-      background-color: #864cbf
+      background-color: #fc466a9a
   }
+}
+
+.home-i :hover{
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .background-image {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  height : 20vh;
+  overflow: hidden;
 }
 
 .bg-change {
@@ -40,4 +47,20 @@
 .rocket-hover:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.blog-body{
+  max-width: 50vw;
+}
+
+@media screen and (max-width: 1400px) {
+  .blog-body{
+    max-width: 75vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .blog-body{
+    max-width: 95vw;
+  }
 }

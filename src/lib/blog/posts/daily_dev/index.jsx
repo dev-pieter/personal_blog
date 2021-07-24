@@ -1,17 +1,17 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
-import { Center, Grid } from '@chakra-ui/react'
+import { Center, SimpleGrid } from '@chakra-ui/react'
 import Card from '../../components/Card'
 import { useState } from 'react'
 import BlogComponent from '../../components/BlogComponent'
 
 const base_url = 'http://178.128.168.53:3000'
 
-export default function DailyDev() {
+export default function PostList(props) {
     const [view, setView] = useState('cards')
-    const blogs = useQuery('daily', () => {
-        return axios.get(base_url + '/get_daily')
+    const blogs = useQuery('posts_' + props.cat, () => {
+        return axios.get(base_url + '/get_' + props.cat)
             .then(res => {
                 // console.log(res)
                 return res.data
@@ -27,19 +27,23 @@ export default function DailyDev() {
         return <Center>Loading</Center>
     }
 
+    if(blogs.isError){
+        return <Center>No posts yet...</Center>
+    }
+
     if(view === 'cards'){
         return (
-            <Center minW='100vw' maxH={'90vh'} overflowY='scroll' className="example">
-                <Grid templateColumns="repeat(4, 1fr)" gap={0}>
+            <Center minW='100%'>
+                <SimpleGrid columns={[1, null, 3]} spacing='40px'>
                 {blogs.data.map((item, key) => {
                     return <div onClick={() => handleView(item)}><Card key={key} author={item.author} heading={item.heading} url={item.img_url}></Card></div>
                 })}
-                </Grid>
+                </SimpleGrid>
             </Center>
         )
     }
     
     return (
-        <BlogComponent image={view.img_url} heading={view.heading} markdown={view.markdown}></BlogComponent>
+        <BlogComponent setView={setView} image={view.img_url} heading={view.heading} markdown={view.markdown}></BlogComponent>
     )
 }

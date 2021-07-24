@@ -11,7 +11,7 @@ import {
 export default function Card(props) {
 const IMAGE = props.url
 return (
-    <Center py={12} mx={8} cursor={'pointer'}>
+    <Center py={12} cursor={'pointer'}>
     <Box
         role={'group'}
         p={6}
