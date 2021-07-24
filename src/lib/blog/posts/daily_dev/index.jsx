@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
-import { Center } from '@chakra-ui/react'
+import { Center, Grid } from '@chakra-ui/react'
 import Card from '../../components/Card'
 import { useState } from 'react'
 import BlogComponent from '../../components/BlogComponent'
@@ -29,10 +29,12 @@ export default function DailyDev() {
 
     if(view === 'cards'){
         return (
-            <Center minW='100vw'>
+            <Center minW='100vw' maxH={'90vh'} overflowY='scroll' className="example">
+                <Grid templateColumns="repeat(4, 1fr)" gap={0}>
                 {blogs.data.map((item, key) => {
                     return <div onClick={() => handleView(item)}><Card key={key} author={item.author} heading={item.heading} url={item.img_url}></Card></div>
                 })}
+                </Grid>
             </Center>
         )
     }

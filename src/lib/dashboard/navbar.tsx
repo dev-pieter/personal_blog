@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <HStack position={'fixed'} top={'0'}>
         <Tabs variant="enclosed" minW={'100vw'}>
-          <TabList >
+          <TabList boxShadow={'lg'}>
             <Tab><Heading>💻 dev_pieter</Heading></Tab>
             <Tab>Daily Dev</Tab>
             <Tab>Two</Tab>

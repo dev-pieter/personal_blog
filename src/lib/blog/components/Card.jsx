@@ -9,9 +9,9 @@ import {
 } from '@chakra-ui/react';
 
 export default function Card(props) {
-const IMAGE = "https://drive.google.com/file/d/1lCYbUX5rCqayQu2jlVk8elamuhvAC_KU/view?usp=sharing"
+const IMAGE = props.url
 return (
-    <Center py={12} mx={8}>
+    <Center py={12} mx={8} cursor={'pointer'}>
     <Box
         role={'group'}
         p={6}
@@ -56,7 +56,7 @@ return (
         <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
             {props.author}
         </Text>
-        <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+        <Heading textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
             {props.heading}
         </Heading>
         {/* <Stack direction={'row'} align={'center'}>

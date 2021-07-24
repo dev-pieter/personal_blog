@@ -6,9 +6,9 @@ import ReactMarkdown from 'react-markdown'
 
 export default function BlogComponent(props) {
     return (
-        <Center>
-            <Stack>
-            <Image className={'background-image'} src={props.image}></Image>
+        <Center maxH={'90vh'} overflowY='scroll' className="example">
+            <Stack maxW={'60vw'}>
+            <Image className={'background-image'} src={props.image} ></Image>
             <br/>
             <Heading>{props.heading}</Heading>
             <br />
