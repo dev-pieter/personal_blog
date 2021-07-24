@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Center, Heading, Stack } from "@chakra-ui/react"
-import Navbar from './navbar';
-import HomePost from '../posts/home/home.md'
+import Navbar from '../../../dashboard/navbar';
+import HomePost from './home.md'
 import ReactMarkdown from 'react-markdown'
 
-export default function Dashboard() {
+export default function Blog() {
     const [trans, setTrans] = useState(0)
     const [markdown, setMarkdown] = useState({
         text : ''
@@ -24,24 +24,20 @@ export default function Dashboard() {
             })
     }, [])
 
-    if(trans){
+    
         return (
             <>
-                <Navbar></Navbar>
-                <Center>
+                <Center maxH={'90vh'} overflowY='scroll' className="example">
                     <Stack p='10'>
-                        <Heading>Hello friends 👋</Heading>
-                        <br/>
-                        <ReactMarkdown >{markdown.text}</ReactMarkdown>
+                    <Center className='bg-change' minH='20vh'>
+                        <Heading fontSize='2xl' textColor='white'>Hello friends 👋. Welcome to my blog 🚀.</Heading>
+                    </Center>
+                    <Heading></Heading>
+                    <br/>
+                    <ReactMarkdown>{markdown.text}</ReactMarkdown>
                     </Stack>
                 </Center>
             </>
         );
-    }
-
-    return (
-        <Center className='bg-change' minH='100vh'>
-            <Heading fontSize='2xl' textColor='white'>Hi, I'm Pieter! Welcome to my blog. <span className='rocket-hover' onClick={handleTrans}>🚀</span></Heading>
-        </Center>
-    )
+    
 }

@@ -1,11 +1,12 @@
 import './App.css';
-import Dashboard from './lib/dashboard';
+import Blog from './lib/blog/posts/home';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import Navbar from './lib/dashboard/navbar';
+import AddPost from './lib/admin/add_post';
 
 function App() {
 
@@ -13,11 +14,10 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Dashboard></Dashboard>
-        </Route>
-        <Route exact path="/blog">
           <Navbar></Navbar>
-          <p>Blog</p>
+        </Route>
+        <Route exact path="/admin">
+          <AddPost></AddPost>
         </Route>
       </Switch>
     </Router>
