@@ -1,7 +1,7 @@
 # personal_blog
 Personal blog built on ReactJS
 
-[view live](https://pietabrood.github.io/personal_blog/)
+[view live: https://blog.devpieter.co.za/](https://blog.devpieter.co.za/)
 
 Frontend technologies I plan to use:
 - Chakra-ui as component library
