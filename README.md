@@ -9,5 +9,5 @@ Frontend technologies I plan to use:
 - react-query for data fetching
 
 Backend:
-- Digital Ocean droplet (Linux based)
-- NodeJS Express API - [view repo](https://github.com/pietabrood/personal_api)
+- DevOps / sysadmin: Digital Ocean droplet (Linux: NGINX for domain routing)
+- NodeJS Express API with Auth - [view repo](https://github.com/pietabrood/personal_api)
