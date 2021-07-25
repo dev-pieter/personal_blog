@@ -1,13 +1,15 @@
-import { Button, Center, Stack } from '@chakra-ui/react'
+import { Button, Center, Stack, Select, Container } from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
-import { Input, Textarea } from "@chakra-ui/react"
+import { Input, Textarea, Text } from "@chakra-ui/react"
 import { useMutation } from 'react-query'
+import { useToast } from '@chakra-ui/toast'
 import axios from 'axios'
 
 const base_url = 'https://goodoakfurniture.co.za'
 
 export default function AddPost() {
+    var toast = useToast()
     const [data, setData] = useState({
         category : "",
         author : "Pieter Nortje",
@@ -21,6 +23,10 @@ export default function AddPost() {
             post
         }).then(res => {
             console.log(res.data)
+            toast({
+                title: 'Post added successfully',
+                status: 'success'
+            })
             return res.data
         })
     })
@@ -60,14 +66,23 @@ export default function AddPost() {
     }
 
     return (
-        <Center>
-            <Stack minW={'50vw'}>
-                <Input placeholder="category" onChange={handleCat}/>
-                <Input placeholder="heading" onChange={handleHead}/>
-                <Input placeholder="img url" onChange={handleUrl}/>
-                <Textarea placeholder="markdown" onChange={handleMarkdwn}/>
-                <Button onClick={handleSubmit}></Button>
-            </Stack>
-        </Center>
+        <Container>
+            <Center>
+                <Stack minW={'50vw'}>
+                    <Text as='label'>Category</Text>
+                    <Select placeholder="Select category" onChange={handleCat}>
+                        <option value="daily">Daily</option>
+                        <option value="tutorial">Tutorial</option>
+                    </Select>
+                    <Text as='label'>Heading</Text>
+                    <Input placeholder="Post heading" onChange={handleHead}/>
+                    <Text as='label'>Image url</Text>
+                    <Input placeholder="img url" onChange={handleUrl}/>
+                    <Text as='label'>Markdown text area</Text>
+                    <Textarea minH={'600px'} placeholder="markdown" onChange={handleMarkdwn}/>
+                    <Button onClick={handleSubmit}>Submit post</Button>
+                </Stack>
+            </Center>
+        </Container>
     )
 }

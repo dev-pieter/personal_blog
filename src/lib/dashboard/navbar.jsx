@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs, TabList, Tab} from "@chakra-ui/react"
-import { HStack, Heading, Center } from '@chakra-ui/layout'
+import { Heading, Center } from '@chakra-ui/layout'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
@@ -8,7 +8,7 @@ export default function Navbar() {
     <Center padding='5'>
         <Tabs variant="enclosed" width={'100vw'} className='bg-change' borderRadius={"xl"} textColor='white'>
           <TabList boxShadow={'lg'} height={'60px'}>
-            <Link to='/personal_blog/'><Tab height='60px'><Heading fontFamily={'monospace'} fontSize={'x-large'}>💻 dev_pieter</Heading></Tab></Link>
+            <Link to='/personal_blog/'><Tab height='60px'><Heading fontFamily={'monospace'} fontSize={'x-large'}>✌️ dev_pieter</Heading></Tab></Link>
             <Link to='/personal_blog/daily'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Daily Dev</Heading></Tab></Link>
             <Link to='/personal_blog/tutorials'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Tutorials</Heading></Tab></Link>
           </TabList >

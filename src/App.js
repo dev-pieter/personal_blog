@@ -3,11 +3,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
 import Navbar from './lib/dashboard/navbar';
-import AddPost from './lib/admin/add_post';
 import PostList from './lib/blog/posts/daily_dev';
 import Blog from './lib/blog/posts/home';
+import Admin from './lib/admin';
 
 function App() {
 
@@ -19,13 +20,16 @@ function App() {
           <Blog></Blog>
         </Route>
         <Route exact path="/personal_blog/admin">
-          <AddPost></AddPost>
+          <Admin></Admin>
         </Route>
         <Route exact path="/personal_blog/daily">
           <PostList cat='daily'></PostList>
         </Route>
         <Route exact path="/personal_blog/tutorials">
           <PostList cat='tutorial'></PostList>
+        </Route>
+        <Route>
+          <Redirect to='/personal_blog/'></Redirect>
         </Route>
       </Switch>
     </Router>
