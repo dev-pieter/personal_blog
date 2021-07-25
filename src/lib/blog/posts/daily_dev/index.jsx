@@ -6,7 +6,7 @@ import Card from '../../components/Card'
 import { useState } from 'react'
 import BlogComponent from '../../components/BlogComponent'
 
-const base_url = 'http://localhost:3000'
+const base_url = 'https://goodoakfurniture.co.za'
 
 export default function PostList(props) {
     const [view, setView] = useState('cards')
