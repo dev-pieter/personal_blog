@@ -6,7 +6,7 @@ import { useMutation } from 'react-query'
 import { useToast } from '@chakra-ui/toast'
 import axios from 'axios'
 
-const base_url = 'https://goodoakfurniture.co.za'
+const base_url = 'https://api.devpieter.co.za'
 
 export default function AddPost() {
     var toast = useToast()

@@ -5,20 +5,37 @@ import ReactMarkdown from 'react-markdown'
 import { FaArrowLeft } from "react-icons/fa";
 import { Box, IconButton } from "@chakra-ui/react"
 import Footer from './Footer';
+import { useQuery } from 'react-query';
+import { useParams, Link } from 'react-router-dom'
+import axios from 'axios'
 // import { Heading } from '@chakra-ui/layout'
 
-export default function BlogComponent(props) {
+export default function BlogComponent() {
+    const { id } = useParams()
+    const base_url = 'https://api.devpieter.co.za'
+
+    const post = useQuery('post_' + id, () => {
+        return axios.get(base_url + `/post/${id}`)
+            .then(res => {
+                return res.data
+            })
+    })
+
+    if(post.isLoading){
+        return <Center>Loading...</Center>
+    }
+
     return (
         <>
-        <IconButton margin={'10px'} aria-label="Back" icon={<FaArrowLeft />} onClick={() => {props.setView('cards')}}/>
+        <Link to={`/${post.data[0].category}`}><IconButton margin={'10px'} aria-label="Back" icon={<FaArrowLeft />}/></Link>
         <Center>
             <Stack className='blog-body'>
-                <Box className={'background-image'} borderRadius='xl'><Image src={props.image} width='100%'></Image></Box>
+                <Box className={'background-image'} borderRadius='xl'><Image src={post.data[0].img_url} width='100%'></Image></Box>
                 <br/>
-                <Heading textAlign='center'>{props.heading}</Heading>
+                <Heading textAlign='center'>{post.data[0].heading}</Heading>
                 <br />
                 <ReactMarkdown>{'****'}</ReactMarkdown>
-                <Box p='10' lineHeight='7' whiteSpace='break-spaces'><ReactMarkdown>{props.markdown}</ReactMarkdown></Box>
+                <Box p='10' lineHeight='7' whiteSpace='break-spaces'><ReactMarkdown>{post.data[0].markdown}</ReactMarkdown></Box>
                 <Footer></Footer>
             </Stack>
         </Center>

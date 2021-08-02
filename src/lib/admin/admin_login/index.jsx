@@ -19,7 +19,7 @@ import { useMutation } from 'react-query';
   export default function Login(props) {
     const [u, setU] = useState('')
     const [p, setP] = useState('')
-    const base_url = 'https://goodoakfurniture.co.za'
+    const base_url = 'https://api.devpieter.co.za'
 
     const login = useMutation((obj) => {
         return axios.post(base_url + '/login', obj)

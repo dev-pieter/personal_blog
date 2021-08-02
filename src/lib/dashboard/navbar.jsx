@@ -8,9 +8,9 @@ export default function Navbar() {
     <Center padding='5'>
         <Tabs variant="enclosed" width={'100vw'} className='bg-change' borderRadius={"xl"} textColor='white'>
           <TabList boxShadow={'lg'} height={'60px'}>
-            <Link to='/personal_blog/'><Tab height='60px'><Heading fontFamily={'monospace'} fontSize={'x-large'}>✌️ dev_pieter</Heading></Tab></Link>
-            <Link to='/personal_blog/daily'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Daily Dev</Heading></Tab></Link>
-            <Link to='/personal_blog/tutorials'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Tutorials</Heading></Tab></Link>
+            <Link to='/'><Tab height='60px'><Heading fontFamily={'monospace'} fontSize={'x-large'}>✌️ dev_pieter</Heading></Tab></Link>
+            <Link to='/daily'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Daily Dev</Heading></Tab></Link>
+            <Link to='/tutorials'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Tutorials</Heading></Tab></Link>
           </TabList >
         </Tabs>
     </Center>
