@@ -23,12 +23,12 @@ export default function Blog() {
         return (
             <>
                 <Center maxWidth='100vw'>
-                    <Stack maxWidth='80vw' p='2'>
-                        <Center className='bg-change' minH='20vh' borderRadius='xl' p='2'>
+                    <Stack maxWidth='80vw' p='10' className='blog-body'>
+                        <Center className='bg-change' minH='30vh' borderRadius='xl' p='2'>
                             <Heading fontSize='2xl' textColor='white' textAlign='center'>Hello friends 👋. Welcome to my blog 🚀.</Heading>
                         </Center>
                         <br/>
-                        <Box lineHeight='5' whiteSpace='break-spaces'><ReactMarkdown>{markdown.text}</ReactMarkdown></Box>
+                        <Box lineHeight='20px' whiteSpace='break-spaces'><ReactMarkdown>{markdown.text}</ReactMarkdown></Box>
                         <Center>
                             <HStack p={'10'} spacing={'5'}>
                                 <a href='https://github.com/pietabrood' className='home-i'>
