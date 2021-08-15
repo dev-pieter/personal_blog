@@ -1,8 +1,8 @@
 {
-  "homepage": "https://blog.devpieter.co.za",
   "name": "pieter_blog",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://blog.devpieter.co.za",
   "dependencies": {
     "@chakra-ui/icons": "^1.0.14",
     "@chakra-ui/react": "^1.6.5",
