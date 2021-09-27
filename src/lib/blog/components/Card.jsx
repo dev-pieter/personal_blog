@@ -59,7 +59,7 @@ return (
                     <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
                         {props.author}
                     </Text>
-                    <Heading textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                    <Heading fontFamily={'monospace'} textAlign={'center'} fontSize={'2xl'} fontWeight={500}>
                         {props.heading}
                     </Heading>
                     <Center>

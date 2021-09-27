@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Center, Heading, Stack, HStack, Box } from "@chakra-ui/react"
 import HomePost from './home.md'
 import ReactMarkdown from 'react-markdown'
-import { FaLinkedinIn, FaGithub } from "react-icons/fa";
+import Footer from '../../components/Footer'
 
 export default function Blog() {
     const [markdown, setMarkdown] = useState({
@@ -23,22 +23,13 @@ export default function Blog() {
         return (
             <>
                 <Center maxWidth='100vw'>
-                    <Stack maxWidth='80vw'>
+                    <Stack maxWidth='70%'>
                         <Center className='bg-change' minH='30vh' borderRadius='xl' p='2'>
                             <Heading fontSize='3xl' textColor='white' fontWeight="bold" textAlign='center'>Hello friends 👋. Welcome to my blog 🚀.</Heading>
                         </Center>
                         <br/>
                         <Box className='blog-body' lineHeight='20px' whiteSpace='break-spaces'><ReactMarkdown>{markdown.text}</ReactMarkdown></Box>
-                        <Center>
-                            <HStack p={'10'} spacing={'5'}>
-                                <a href='https://github.com/pietabrood' className='home-i'>
-                                    <FaGithub width='20px' fontSize={'25px'}/>
-                                </a>
-                                <a href='https://www.linkedin.com/in/pieternortje' className='home-i'>
-                                    <FaLinkedinIn width='20px' fontSize={'25px'}/>
-                                </a>
-                            </HStack>
-                        </Center>
+                        <Footer/>
                     </Stack>
                 </Center>
             </>
