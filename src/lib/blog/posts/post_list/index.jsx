@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
-import { Center, SimpleGrid } from '@chakra-ui/react'
+import { Center, Stack } from '@chakra-ui/react'
 import Card from '../../components/Card'
 import { useState } from 'react'
 import BlogComponent from '../../components/BlogComponent'
@@ -35,11 +35,11 @@ export default function PostList(props) {
     if(view === 'cards'){
         return (
             <Center minW='100%'>
-                <SimpleGrid columns={[1, null, 3]} spacing='40px'>
+                <Stack mt={3}  spacing='30px'>
                 {blogs.data.map((item, key) => {
                     return <div><Link to={`/posts/${item._id}`}><Card key={key} author={item.author} heading={item.heading} url={item.img_url}></Card></Link></div>
                 })}
-                </SimpleGrid>
+                </Stack>
             </Center>
         )
     }

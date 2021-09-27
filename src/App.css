@@ -20,11 +20,6 @@
     }
 }
 
-.home-i :hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
 .background-image {
     margin-left: auto;
     margin-right: auto;

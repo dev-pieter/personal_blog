@@ -29,9 +29,7 @@ export default function BlogComponent() {
         <>
         <Link to={`/${post.data[0].category}`}><IconButton margin={'10px'} aria-label="Back" icon={<FaArrowLeft />}/></Link>
         <Center>
-            <Stack className='blog-body'>
-                <Box className={'background-image'} borderRadius='xl'><Image src={post.data[0].img_url} width='100%'></Image></Box>
-                <br/>
+            <Stack className='blog-body' maxW={'80%'}>
                 <Heading textAlign='center'>{post.data[0].heading}</Heading>
                 <br />
                 <ReactMarkdown>{'****'}</ReactMarkdown>
