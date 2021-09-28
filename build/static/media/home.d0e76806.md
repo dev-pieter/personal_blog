@@ -1,15 +1,5 @@
 *****
 
-```
-
-(function sayHello() {
-    console.log('Hello, fellow devs!')
-})()
-
-```
-
-*****
-
 **Here you will find the day-to-day of a working software engineer:**
 
 

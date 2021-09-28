@@ -33,7 +33,7 @@ export default function BlogComponent() {
                 <Heading textAlign='center'>{post.data[0].heading}</Heading>
                 <br />
                 <ReactMarkdown>{'****'}</ReactMarkdown>
-                <Box p='10' lineHeight='20px' whiteSpace='break-spaces'><ReactMarkdown>{post.data[0].markdown}</ReactMarkdown></Box>
+                <Box lineHeight='20px' whiteSpace='break-spaces' textAlign='justify'><ReactMarkdown>{post.data[0].markdown}</ReactMarkdown></Box>
                 <Footer></Footer>
             </Stack>
         </Center>

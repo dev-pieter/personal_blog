@@ -5,9 +5,11 @@ import {
     Heading,
     Text,
     Stack,
+    SimpleGrid,
     HStack,
     Image,
-    Badge
+    Badge,
+    Kbd
 } from '@chakra-ui/react';
 import { FaShareAlt, FaEye } from 'react-icons/fa'
 
@@ -18,18 +20,20 @@ return (
     <Box
         role={'group'}
         p={6}
-        maxW={'85%'}
-        w={'full'}
+        maxW={'100%'}
         bg={useColorModeValue('white', 'gray.800')}
         boxShadow={'2xl'}
         rounded={'lg'}
         pos={'relative'}
         zIndex={1}>
-            <HStack>
+            <SimpleGrid columns={[1,1,2]} spacing={'20px'} alignItems={'center'}>
+                <Center>
                 <Box
                 rounded={'lg'}
                 pos={'relative'}
+                width={'282px'}
                 height={'230px'}
+                maxW={'100%'}
                 _after={{
                     transition: 'all .3s ease',
                     content: '""',
@@ -55,21 +59,24 @@ return (
                         src={IMAGE}
                     />
                 </Box>
-                <Stack textAlign='center' spacing={3}>
-                    <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                        {props.author}
-                    </Text>
-                    <Heading fontFamily={'monospace'} textAlign={'center'} fontSize={'2xl'} fontWeight={500}>
-                        {props.heading}
-                    </Heading>
-                    <Center>
-                    <HStack>
-                        <Badge colorScheme={'teal'}>Experience</Badge>
-                        <Badge colorScheme={'green'}>Software</Badge>
-                        <Badge colorScheme={'messenger'}>Coding</Badge>
-                    </HStack>
-                    </Center>
-                </Stack>
+                </Center>
+                <Center>
+                    <Stack textAlign='center' spacing={6} h={'100%'}>
+                        <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                            {props.author}
+                        </Text>
+                        <Heading fontFamily={'monospace'} textAlign={'center'} fontSize={'2xl'} fontWeight={500}>
+                            {props.heading}
+                        </Heading>
+                        <Center>
+                        <HStack>
+                            <Kbd colorScheme={'teal'}>Experience</Kbd>
+                            <Kbd colorScheme={'green'}>Software</Kbd>
+                            <Kbd colorScheme={'messenger'}>Coding</Kbd>
+                        </HStack>
+                        </Center>
+                    </Stack>
+                </Center>
                 <HStack position='absolute' right={6} top={6} spacing={'3'} color={'gray.400'}>
                     <HStack spacing={'1'}>
                         <Text fontSize='sm'>0</Text>
@@ -85,7 +92,7 @@ return (
                     $199
                     </Text>
                 </Stack> */}
-            </HStack>
+            </SimpleGrid>
     </Box>
     </Center>
 );

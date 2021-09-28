@@ -75,9 +75,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="4" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-        ✌️ dev_pieter
-        </Text>
+        <Link href="/">
+          <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+          ✌️ dev_pieter
+          </Text>
+        </Link>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
