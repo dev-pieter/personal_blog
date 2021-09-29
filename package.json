@@ -31,7 +31,7 @@
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
         "deploy": "git add . && git commit -m 'Deployment' && git push",
-        "production": "git pull && pm2 stop blog && pm2 serve build 5000 -- blog"
+        "production": "git pull && pm2 stop blog && pm2 serve build 5000 --name blog"
     },
     "eslintConfig": {
         "extends": [
