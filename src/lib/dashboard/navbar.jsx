@@ -6,30 +6,17 @@ import {
   Flex,
   Image,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom'
 import {
   FiMenu,
 } from 'react-icons/fi';
 import Footer from '../blog/components/Footer';
 
-// export default function Navbar() {
-//   return (
-//     <Center padding='5'>
-//         <Tabs variant="enclosed" width={'100vw'} className='bg-change' borderRadius={"xl"} textColor='white'>
-//           <TabList boxShadow={'lg'} height={'60px'}>
-//             <Link to='/'><Tab height='60px'><Heading fontFamily={'monospace'} fontSize={'x-large'}>✌️ dev_pieter</Heading></Tab></Link>
-//             <Link to='/daily'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Daily Dev</Heading></Tab></Link>
-//             <Link to='/tutorials'><Tab height='60px'><Heading fontSize={'sm'} fontFamily={'monospace'}>Tutorials</Heading></Tab></Link>
-//           </TabList >
-//         </Tabs>
-//     </Center>
-//   )
-// }
 const LinkItems = [
   { name: 'daily dev', icon: 'https://images.unsplash.com/photo-1533279443086-d1c19a186416?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80', path: "/daily" },
   { name: 'tutorials', icon: 'https://images.unsplash.com/photo-1510843572979-e4b9e790fdd7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80', path: "/tutorials"},
@@ -75,7 +62,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="4" justifyContent="space-between">
-        <Link href="/">
+        <Link to="/">
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           ✌️ dev_pieter
           </Text>
@@ -96,7 +83,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
 const NavItem = ({ icon, path, children, ...rest }) => {
   return (
-    <Link href={path} style={{ textDecoration: 'none' }}>
+    <Link to={path} style={{ textDecoration: 'none' }}>
       <Flex
         fontFamily="monospace"
         fontSize="16"
