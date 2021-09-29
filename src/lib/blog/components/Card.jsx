@@ -31,8 +31,8 @@ return (
                 <Box
                 rounded={'lg'}
                 pos={'relative'}
-                width={'282px'}
-                height={'230px'}
+                width={'200px'}
+                height={'200px'}
                 maxW={'100%'}
                 _after={{
                     transition: 'all .3s ease',
@@ -53,8 +53,8 @@ return (
                 }}>
                     <Image
                         rounded={'lg'}
-                        height={230}
-                        width={282}
+                        height={'100%'}
+                        width={'100%'}
                         objectFit={'cover'}
                         src={IMAGE}
                     />
@@ -65,7 +65,7 @@ return (
                         <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
                             {props.author}
                         </Text>
-                        <Heading fontFamily={'monospace'} textAlign={'center'} fontSize={'2xl'} fontWeight={500}>
+                        <Heading fontFamily={'monospace'} textAlign={'center'} fontSize={'xl'} fontWeight={500}>
                             {props.heading}
                         </Heading>
                         <Center>

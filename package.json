@@ -30,7 +30,8 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
-        "deploy": "git add . && git commit -m 'Deployment' && git push"
+        "deploy": "git add . && git commit -m 'Deployment' && git push",
+        "production": "git pull && pm2 serve build 5000"
     },
     "eslintConfig": {
         "extends": [
