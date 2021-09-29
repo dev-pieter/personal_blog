@@ -37,7 +37,7 @@ export default function SimpleSidebar({ children }) {
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full">
+        size='xs'>
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
@@ -57,7 +57,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       bg={useColorModeValue('white', 'gray.900')}
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-      w={{ base: 'full', md: 60 }}
+      w={{ base: 'xs', md: 60 }}
       pos="fixed"
       h="full"
       {...rest}>
