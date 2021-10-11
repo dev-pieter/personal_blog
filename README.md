@@ -11,3 +11,4 @@ Frontend technologies I plan to use:
 Backend:
 - DevOps / sysadmin: Digital Ocean droplet (Linux: NGINX for domain routing)
 - NodeJS Express API with Auth - [view repo](https://github.com/pietabrood/personal_api)
+
