@@ -1,7 +1,6 @@
 {
     "name": "pieter_blog",
     "version": "0.1.0",
-    "homepage": ".",
     "dependencies": {
         "@chakra-ui/icons": "^1.0.14",
         "@chakra-ui/react": "^1.6.5",
