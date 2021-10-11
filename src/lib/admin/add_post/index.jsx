@@ -1,15 +1,27 @@
 import { Button, Center, Stack, Select, Container } from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
-import { Input, Textarea, Text } from "@chakra-ui/react"
+import { Input, Textarea, Text, HStack } from "@chakra-ui/react"
 import { useMutation } from 'react-query'
 import { useToast } from '@chakra-ui/toast'
 import axios from 'axios'
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+  } from "@chakra-ui/react"
+  import { useDisclosure } from '@chakra-ui/hooks'
 
 const base_url = 'https://api.devpieter.co.za'
 
 export default function AddPost() {
     var toast = useToast()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     const [data, setData] = useState({
         category : "",
         author : "Pieter Nortje",
@@ -66,9 +78,17 @@ export default function AddPost() {
     }
 
     return (
-        <Container>
-            <Center>
-                <Stack minW={'50vw'}>
+        <>
+        <HStack>
+            <Button bg='white' onClick={onOpen} borderRadius='full'>+</Button>
+        </HStack>
+        <Modal isOpen={isOpen} onClose={onClose} size='2xl'>
+            <ModalOverlay />
+            <ModalContent>
+            <ModalHeader>Edit post</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+                <Stack>
                     <Text as='label'>Category</Text>
                     <Select placeholder="Select category" onChange={handleCat}>
                         <option value="daily">Daily</option>
@@ -82,7 +102,10 @@ export default function AddPost() {
                     <Textarea minH={'600px'} placeholder="markdown" onChange={handleMarkdwn}/>
                     <Button onClick={handleSubmit}>Submit post</Button>
                 </Stack>
-            </Center>
-        </Container>
+            </ModalBody>
+            </ModalContent>
+        </Modal>
+        
+        </>
     )
 }
