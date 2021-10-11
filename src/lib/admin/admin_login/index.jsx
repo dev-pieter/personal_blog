@@ -4,7 +4,7 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Checkbox,
+    Center,
     Stack,
     Link,
     Button,
@@ -59,16 +59,8 @@ import { useMutation } from 'react-query';
         }
 
     return (
-      <Flex
-        minH={'100vh'}
-        minW={'100vw'}
-        zIndex={'-1'}
-        align={'center'}
-        justify={'center'}
-        bg={useColorModeValue('gray.50', 'gray.800')}
-        position='fixed'
-        top='0'>
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} minW="40vw">
+      <Center h={'95vh'}>
+        <Stack spacing={8} mx={'auto'} maxW={'md'} py={12} px={6} minW="40vw">
           <Stack align={'center'}>
             <Heading fontSize={'4xl'}>Sign in as admin</Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
@@ -104,6 +96,6 @@ import { useMutation } from 'react-query';
             </Stack>
           </Box>
         </Stack>
-      </Flex>
+      </Center>
     );
   }

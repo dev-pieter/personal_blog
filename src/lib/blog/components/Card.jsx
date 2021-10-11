@@ -11,7 +11,7 @@ import {
     Badge,
     Kbd
 } from '@chakra-ui/react';
-import { FaShareAlt, FaEye } from 'react-icons/fa'
+import { FaEye } from 'react-icons/fa'
 
 export default function Card(props) {
 const IMAGE = props.url
@@ -79,10 +79,9 @@ return (
                 </Center>
                 <HStack position='absolute' right={6} top={6} spacing={'3'} color={'gray.400'}>
                     <HStack spacing={'1'}>
-                        <Text fontSize='sm'>0</Text>
+                        <Text fontSize='sm'>{props.views || 0}</Text>
                         <FaEye/>
                     </HStack>
-                    <FaShareAlt/>
                 </HStack>
                 {/* <Stack direction={'row'} align={'center'}>
                     <Text fontWeight={800} fontSize={'xl'}>
