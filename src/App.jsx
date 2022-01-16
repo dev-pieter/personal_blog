@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/daily">
             <PostList cat='daily'></PostList>
           </Route>
-          <Route exact path="/tutorials">
+          <Route exact path="/tutorial">
             <PostList cat='tutorial'></PostList>
           </Route>
           <Route path="/posts/:id">

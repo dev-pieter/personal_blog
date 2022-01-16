@@ -1,6 +1,5 @@
 import React from 'react'
 import { Center, Heading, HStack, Stack } from '@chakra-ui/layout'
-import { Image } from '@chakra-ui/image'
 import ReactMarkdown from 'react-markdown'
 import { FaArrowLeft } from "react-icons/fa";
 import { Box, IconButton } from "@chakra-ui/react"
