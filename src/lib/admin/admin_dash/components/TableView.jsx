@@ -8,7 +8,7 @@ import { Table, Thead, Tbody, Tr, Th, Td, Center } from "@chakra-ui/react";
 const base_url = "https://api.devpieter.co.za";
 
 export default function TableView() {
-  const [interval, setInterval] = useState(1000);
+  const interval = 1000;
 
   const blogs_daily = useQuery(
     "posts_" + "daily",
