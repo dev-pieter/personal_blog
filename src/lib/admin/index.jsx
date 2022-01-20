@@ -1,6 +1,5 @@
 import React from 'react'
 import Login from './admin_login'
-import AddPost from './add_post'
 import { useState } from 'react'
 import Dashboard from './admin_dash'
 

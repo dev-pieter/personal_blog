@@ -1,19 +1,18 @@
-import './App.css';
+import "./styles/App.css";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from "react-router-dom";
-import Navbar from './lib/dashboard/navbar';
-import PostList from './lib/blog/posts/post_list';
-import Blog from './lib/blog/posts/home';
-import Admin from './lib/admin';
-import BlogComponent from './lib/blog/components/BlogComponent';
+import Navbar from "./lib/dashboard/navbar";
+import PostList from "./lib/blog/posts/post_list";
+import Blog from "./lib/blog/posts/home";
+import Admin from "./lib/admin";
+import { BlogComponent } from "./lib/components";
 
 function App() {
-
-  return(
+  return (
     <Router>
       <Navbar>
         <Switch>
@@ -24,22 +23,21 @@ function App() {
             <Admin></Admin>
           </Route>
           <Route exact path="/daily">
-            <PostList cat='daily'></PostList>
+            <PostList cat="daily"></PostList>
           </Route>
           <Route exact path="/tutorial">
-            <PostList cat='tutorial'></PostList>
+            <PostList cat="tutorial"></PostList>
           </Route>
           <Route path="/posts/:id">
             <BlogComponent></BlogComponent>
           </Route>
           <Route>
-            <Redirect to='/admin'></Redirect>
+            <Redirect to="/admin"></Redirect>
           </Route>
         </Switch>
       </Navbar>
     </Router>
   );
-  
 }
 
 export default App;
