@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
-import { Edit } from ".";
+import { Edit } from "..";
 import { Table, Thead, Tbody, Tr, Th, Td, Center } from "@chakra-ui/react";
 
 const base_url = "https://api.devpieter.co.za";

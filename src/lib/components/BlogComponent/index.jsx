@@ -1,2 +1,1 @@
-import BlogComponent from "./BlogComponent";
-export default BlogComponent;
+export { default as BlogComponent } from "./BlogComponent";
