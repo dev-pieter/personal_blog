@@ -4,18 +4,20 @@ ul {
     padding-left: 40px !important;
 }
 
-pre,
+/* pre,
 code,
 samp {
-    font-family: monospace !important;
-    font-size: 1em !important;
-    background-color: black !important;
-    color: greenyellow !important;
-    border-radius: 5px !important;
-    overflow-x: auto !important;
-    padding: 4px !important;
-    max-width: fit-content !important;
-}
+    display: block;
+    color: rgb(255, 255, 255);
+    background-color:rgb(75, 75, 75);
+    border-radius: 5px;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 10px;
+} */
 
 .example::-webkit-scrollbar {
     display: none;

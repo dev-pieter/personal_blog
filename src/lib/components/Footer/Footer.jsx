@@ -7,7 +7,7 @@ export default function Footer() {
         <Center>
             <HStack p={'10'} spacing={'5'}>
                 <Box _hover={{transform: 'scale(1.2)'}} cursor='pointer'>
-                    <Link href='https://github.com/pietabrood'>
+                    <Link href='https://github.com/dev-pieter'>
                         <FaGithub fontSize={'25px'}/>
                     </Link>
                 </Box>
