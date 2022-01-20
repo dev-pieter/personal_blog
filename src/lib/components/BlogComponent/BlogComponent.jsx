@@ -3,7 +3,7 @@ import { Center, Heading, HStack, Stack } from '@chakra-ui/layout'
 import ReactMarkdown from 'react-markdown'
 import { FaArrowLeft } from "react-icons/fa";
 import { Box, IconButton } from "@chakra-ui/react"
-import Footer from './Footer';
+import { Footer } from '..';
 import { useQuery } from 'react-query';
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
