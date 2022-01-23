@@ -1,7 +1,14 @@
 import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
-import { Center, SimpleGrid } from "@chakra-ui/react";
+import {
+  Center,
+  SimpleGrid,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 import { Card } from "../../../components";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -11,12 +18,23 @@ const base_url = "https://api.devpieter.co.za";
 
 export default function PostList(props) {
   const [view, setView] = useState("cards");
+  const [posts, setPosts] = useState([]);
   const blogs = useQuery("posts_" + props.cat, () => {
     return axios.get(base_url + "/get_" + props.cat).then((res) => {
       // console.log(res)
+      setPosts(res.data);
       return res.data;
     });
   });
+
+  const onSearch = (e) => {
+    const searchString = e.target.value;
+    if (!searchString) {
+      setPosts(blogs.data);
+    } else {
+      setPosts(blogs.data.filter((j) => j.heading.match(searchString)));
+    }
+  };
 
   if (blogs.isLoading) {
     return <Center>Loading</Center>;
@@ -29,21 +47,27 @@ export default function PostList(props) {
   if (view === "cards") {
     return (
       <Center minW="100%">
-        <SimpleGrid columns={[1, 1, 2]} gap={"20px"}>
-          {blogs.data.map((item, key) => {
-            return (
-              <div>
-                <Link to={`/posts/${item._id}`}>
-                  <Card
-                    key={key}
-                    author={item.author}
-                    heading={item.heading}
-                    url={item.img_url}
-                    views={item.views}
-                  ></Card>
-                </Link>
-              </div>
-            );
+        <SimpleGrid columns={[1, 1, 1]} gap={"20px"} minW="70%">
+          <InputGroup>
+            <InputLeftElement children={<SearchIcon />} />
+            <Input variant="Outline" placeholder="Search" onChange={onSearch} />
+          </InputGroup>
+          {posts.map((item, key) => {
+            if (item.markdown) {
+              return (
+                <div>
+                  <Link to={`/posts/${item._id}`}>
+                    <Card
+                      key={key}
+                      author={item.author}
+                      heading={item.heading}
+                      url={item.img_url}
+                      views={item.views}
+                    ></Card>
+                  </Link>
+                </div>
+              );
+            }
           })}
         </SimpleGrid>
       </Center>
