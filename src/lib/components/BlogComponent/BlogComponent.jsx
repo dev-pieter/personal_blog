@@ -17,7 +17,6 @@ export default function BlogComponent() {
   const toast = useToast();
   const { id } = useParams();
   const base_url = "https://api.devpieter.co.za/";
-  // const base_url = "http://172.17.37.190:3001/"
 
   const post = useQuery(
     "post_" + id,
@@ -63,7 +62,7 @@ export default function BlogComponent() {
         </CopyToClipboard>
       </HStack>
       <Center>
-        <Stack className="blog-body" maxW={"80%"}>
+        <Stack className="blog-body" maxW={"70%"}>
           <Heading textAlign="center">{post.data[0].heading}</Heading>
           <br />
           <ReactMarkdown>{"****"}</ReactMarkdown>
