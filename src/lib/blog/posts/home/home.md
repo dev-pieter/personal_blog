@@ -14,3 +14,4 @@ I'd love to have you stick around so I can share the knowledge I aqcuire through
 *****
 
 If you'd like to contact me directly, send me an email **[pieter_nortje@outlook.com](mailto:pieter_nortje@outlook.com)**
+*****

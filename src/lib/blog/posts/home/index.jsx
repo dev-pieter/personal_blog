@@ -22,7 +22,7 @@ export default function Blog() {
   return (
     <>
       <Center maxWidth="100vw">
-        <Stack maxWidth="80%">
+        <Stack maxWidth="70%">
           <Center className="bg-change" minH="20vh" borderRadius="xl" p="2">
             <Heading
               fontSize="3xl"
@@ -39,7 +39,7 @@ export default function Blog() {
               className="blog-body"
               lineHeight="20px"
               whiteSpace="break-spaces"
-              maxW="85%"
+              maxW="100%"
             >
               <ReactMarkdown>{markdown.text}</ReactMarkdown>
             </Box>
