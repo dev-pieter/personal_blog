@@ -7,6 +7,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Spinner,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Card } from "../../../components";
@@ -37,7 +38,11 @@ export default function PostList(props) {
   };
 
   if (blogs.isLoading) {
-    return <Center>Loading</Center>;
+    return (
+      <Center>
+        <Spinner />
+      </Center>
+    );
   }
 
   if (blogs.isError || blogs.data.length === 0) {
