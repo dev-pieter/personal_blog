@@ -26,6 +26,7 @@ const base_url = "https://api.devpieter.co.za";
 export default function AddPost() {
   var toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const token = sessionStorage.getItem("token");
 
   const [data, setData] = useState({
     category: "",
@@ -80,7 +81,10 @@ export default function AddPost() {
   };
 
   const handleSubmit = () => {
-    const d = data;
+    const d = {
+      ...data,
+      token
+    };
 
     submit.mutate(d);
   };

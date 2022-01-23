@@ -24,12 +24,24 @@ const base_url = "https://api.devpieter.co.za/";
 
 export default function Edit({ post }) {
   var toast = useToast();
+  const token = sessionStorage.getItem("token");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const update = useMutation(async (obj) => {
     axios.post(base_url + "update_post", obj).then((res) => {
       toast({
         title: "Post updated successfully",
+        status: "success",
+      });
+    });
+  });
+
+  const deletePost = useMutation(async (obj) => {
+    axios.post(base_url + "delete_post", obj).then((res) => {
+      console.log(post, res.data);
+      toast({
+        title: "Post deleted successfully",
         status: "success",
       });
     });
@@ -44,9 +56,19 @@ export default function Edit({ post }) {
       heading: e.target[1].value,
       img_url: e.target[2].value,
       markdown: e.target[3].value,
+      token,
     };
 
     update.mutate(obj);
+  };
+
+  const onDelete = () => {
+    const obj = {
+      id: post._id,
+      token,
+    };
+
+    deletePost.mutate(obj);
   };
 
   return (
@@ -55,7 +77,7 @@ export default function Edit({ post }) {
         <Button bg="white" onClick={onOpen}>
           edit
         </Button>
-        <Button colorScheme="red">delete</Button>
+        <Button colorScheme="red" onClick={onDelete}>delete</Button>
       </HStack>
 
       <Modal isOpen={isOpen} onClose={onClose} size="2xl">
