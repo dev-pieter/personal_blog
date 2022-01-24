@@ -14,6 +14,7 @@ import { FaEye } from "react-icons/fa";
 
 export default function Card(props) {
   const IMAGE = props.url;
+
   return (
     <Center cursor={"pointer"}>
       <Box
@@ -27,10 +28,33 @@ export default function Card(props) {
         pos={"relative"}
         zIndex={1}
         _hover={{
-            borderLeft: "5px solid orange"
+          borderLeft: "5px solid orange",
         }}
       >
         <SimpleGrid columns={[1, 1, 2]} spacing={"20px"} alignItems={"center"}>
+          <Center>
+            <Stack textAlign="left" spacing={6} h={"100%"}>
+              <Text
+                color={"gray.500"}
+                fontSize={"sm"}
+                textTransform={"uppercase"}
+              >
+                {props.author}
+              </Text>
+              <Heading
+                fontFamily={"monospace"}
+                textAlign={"center"}
+                fontSize={"xl"}
+                fontWeight={500}
+              >
+                {props.heading}
+              </Heading>
+              <HStack>
+                <Kbd colorScheme={"teal"}>Experience</Kbd>
+                <Kbd colorScheme={"green"}>{props.readTime}</Kbd>
+              </HStack>
+            </Stack>
+          </Center>
           <Center>
             <Box
               rounded={"lg"}
@@ -64,30 +88,6 @@ export default function Card(props) {
                 src={IMAGE}
               />
             </Box>
-          </Center>
-          <Center>
-            <Stack textAlign="left" spacing={6} h={"100%"}>
-              <Text
-                color={"gray.500"}
-                fontSize={"sm"}
-                textTransform={"uppercase"}
-              >
-                {props.author}
-              </Text>
-              <Heading
-                fontFamily={"monospace"}
-                textAlign={"center"}
-                fontSize={"xl"}
-                fontWeight={500}
-              >
-                {props.heading}
-              </Heading>
-              <HStack>
-                <Kbd colorScheme={"teal"}>Experience</Kbd>
-                <Kbd colorScheme={"green"}>Software</Kbd>
-                <Kbd colorScheme={"messenger"}>Coding</Kbd>
-              </HStack>
-            </Stack>
           </Center>
           <HStack
             position="absolute"

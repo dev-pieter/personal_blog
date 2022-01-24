@@ -37,6 +37,13 @@ export default function PostList(props) {
     }
   };
 
+  const calculateReadTime = (markdown) => {
+    console.log(markdown)
+    const chars = markdown.length
+
+    return Math.floor(chars / 200 / 6);
+  }
+
   if (blogs.isLoading) {
     return (
       <Center>
@@ -68,6 +75,7 @@ export default function PostList(props) {
                       heading={item.heading}
                       url={item.img_url}
                       views={item.views}
+                      readTime={calculateReadTime(item.markdown) + ' min' }
                     ></Card>
                   </Link>
                 </div>
