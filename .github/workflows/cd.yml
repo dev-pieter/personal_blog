@@ -17,5 +17,5 @@ jobs:
         with:
           node-version: '14.x'
         
-#       - name: Restart server application
-#         run: pm2 restart api
+      - name: Restart server application
+        run: pm2 restart blog
