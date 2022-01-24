@@ -30,9 +30,9 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "jest",
         "eject": "react-scripts eject",
-        "precommit": "npm run build",
+        "precommit": "npm run build && git add .",
         "commit": "git commit -m 'production build'"
     },
     "browserslist": {
