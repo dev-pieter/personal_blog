@@ -43,8 +43,9 @@ export default function Card(props) {
               </Text>
               <Heading
                 fontFamily={"monospace"}
-                textAlign={"center"}
+                textAlign={"left"}
                 fontSize={"xl"}
+                maxW={"350px"}
                 fontWeight={500}
               >
                 {props.heading}
