@@ -41,6 +41,7 @@ export default function AddPost() {
     axios
       .post(base_url + "/add_post", {
         post,
+        token
       })
       .then((res) => {
         console.log(res.data);
@@ -82,8 +83,7 @@ export default function AddPost() {
 
   const handleSubmit = () => {
     const d = {
-      ...data,
-      token
+      ...data
     };
 
     submit.mutate(d);
