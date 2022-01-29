@@ -11,6 +11,7 @@ import {
   Kbd,
 } from "@chakra-ui/react";
 import { FaEye } from "react-icons/fa";
+import "../../../styles/App.css";
 
 export default function Card(props) {
   const IMAGE = props.url;
@@ -56,7 +57,7 @@ export default function Card(props) {
               </HStack>
             </Stack>
           </Center>
-          <Center>
+          <Center className="card-image">
             <Box
               rounded={"lg"}
               pos={"relative"}

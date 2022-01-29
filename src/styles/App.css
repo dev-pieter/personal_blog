@@ -59,14 +59,26 @@ samp {
     transform: scale(1.1);
 }
 
+.card-image {
+    display: block !important;
+}
+
 @media screen and (max-width: 1400px) {
     .blog-body {
         max-width: 75vw !important;
     }
+
+    .card-image {
+        display: block !important;
+    }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .blog-body {
         max-width: 90vw !important;
+    }
+
+    .card-image {
+        display: none !important;
     }
 }
