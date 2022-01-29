@@ -8,24 +8,14 @@ h1 {
     font-size: 20px !important;
     line-height: 1.5;
 }
-
-a {
-    color: tomato !important;
-}
-/* pre,
+pre,
 code,
 samp {
-    display: block;
-    color: rgb(255, 255, 255);
-    background-color:rgb(75, 75, 75);
-    border-radius: 5px;
-    white-space: pre;
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;
     max-width: 100%;
     min-width: 100px;
-    padding: 10px;
-} */
+}
 
 .example::-webkit-scrollbar {
     display: none;
@@ -69,18 +59,14 @@ samp {
     transform: scale(1.1);
 }
 
-.blog-body {
-    max-width: 50vw;
-}
-
 @media screen and (max-width: 1400px) {
     .blog-body {
-        max-width: 75vw;
+        max-width: 75vw !important;
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 400px) {
     .blog-body {
-        max-width: 95vw;
+        max-width: 90vw !important;
     }
 }
