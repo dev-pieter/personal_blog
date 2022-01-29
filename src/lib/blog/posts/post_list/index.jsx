@@ -8,21 +8,30 @@ import {
   InputGroup,
   InputLeftElement,
   Spinner,
+  HStack,
+  Select,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Card } from "../../../components";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { dynamicSort, calculateReadTime } from "../../../utlis/utils";
 
 const base_url = "https://api.devpieter.co.za";
 // const base_url = 'http://172.17.37.190:3001'
 
+const sorts = [
+  {value: "-created_at", name: "↑ Post date"},
+  {value: "-updated_at", name: "↑ Last updated"}
+]
+
 export default function PostList(props) {
   const [view, setView] = useState("cards");
   const [posts, setPosts] = useState([]);
+  const [order, setOrder] = useState(sorts[1].value);
+
   const blogs = useQuery("posts_" + props.cat, () => {
     return axios.get(base_url + "/get_" + props.cat).then((res) => {
-      // console.log(res)
       setPosts(res.data);
       return res.data;
     });
@@ -36,13 +45,6 @@ export default function PostList(props) {
       setPosts(blogs.data.filter((j) => j.heading.match(searchString)));
     }
   };
-
-  const calculateReadTime = (markdown) => {
-    console.log(markdown)
-    const chars = markdown.length
-
-    return Math.floor(chars / 200 / 6);
-  }
 
   if (blogs.isLoading) {
     return (
@@ -60,11 +62,16 @@ export default function PostList(props) {
     return (
       <Center minW="100%">
         <SimpleGrid columns={[1, 1, 1]} gap={"20px"} minW="70%">
-          <InputGroup>
-            <InputLeftElement children={<SearchIcon />} />
-            <Input variant="Outline" placeholder="Search" onChange={onSearch} />
-          </InputGroup>
-          {posts.map((item, key) => {
+          <HStack>
+            <InputGroup width={"80%"}>
+              <InputLeftElement children={<SearchIcon />} />
+              <Input variant="Outline" placeholder="Search" onChange={onSearch} />
+            </InputGroup>
+            <Select width={"20%"} onChange={(e) => setOrder(e.target.value)}>
+              {sorts.map(item => (<option value={item.value}>{item.name}</option>))}
+            </Select>
+          </HStack>
+          {posts.sort(dynamicSort(order)).map((item, key) => {
             if (item.markdown) {
               return (
                 <div>
@@ -76,6 +83,7 @@ export default function PostList(props) {
                       url={item.img_url}
                       views={item.views}
                       readTime={calculateReadTime(item.markdown) + ' min read' }
+                      date={new Date(item.created_at).toDateString()}
                     ></Card>
                   </Link>
                 </div>

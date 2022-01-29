@@ -44,7 +44,6 @@ export default function AddPost() {
         token
       })
       .then((res) => {
-        console.log(res.data);
         toast({
           title: "Post added successfully",
           status: "success",

@@ -19,7 +19,6 @@ import { useMutation } from "react-query";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 
-// const base_url = "http://172.17.37.190:3001/"
 const base_url = "https://api.devpieter.co.za/";
 
 export default function Edit({ post }) {
@@ -39,7 +38,6 @@ export default function Edit({ post }) {
 
   const deletePost = useMutation(async (obj) => {
     axios.post(base_url + "delete_post", obj).then((res) => {
-      console.log(post, res.data);
       toast({
         title: "Post deleted successfully",
         status: "success",
