@@ -51,6 +51,7 @@ export default function Card(props) {
                 {props.heading}
               </Heading>
               <HStack>
+                <Kbd>{props.date}</Kbd>
                 <Kbd>{props.readTime}</Kbd>
               </HStack>
             </Stack>

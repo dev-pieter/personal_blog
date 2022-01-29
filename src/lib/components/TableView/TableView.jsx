@@ -13,7 +13,6 @@ export default function TableView({ children }) {
     "posts_" + "daily",
     async () => {
       return axios.get(base_url + "/get_" + "daily").then((res) => {
-        // console.log(res)
         return res.data;
       });
     },
@@ -26,7 +25,6 @@ export default function TableView({ children }) {
     "posts_" + "tutorial",
     async () => {
       return axios.get(base_url + "/get_" + "tutorial").then((res) => {
-        // console.log(res)
         return res.data;
       });
     },

@@ -1,6 +1,6 @@
 *****
 
-**Here you will find the day-to-day of a working software engineer:**
+Here you will find the day-to-day of a working software engineer:
 
 
 - Some tips and tricks 

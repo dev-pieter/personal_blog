@@ -22,9 +22,7 @@ import { useMutation } from 'react-query';
     const login = useMutation((obj) => {
         return axios.post(base_url + '/login', obj)
             .then(res => {
-                console.log(res.data)
                 if(res.data.success !== undefined){
-                    console.log('success')
                     sessionStorage.setItem('token', res.data.success)
                     props.setToken(res.data.success)
                     return res.data
@@ -35,14 +33,10 @@ import { useMutation } from 'react-query';
     })
 
     const handleP = (e) => {
-        console.log(e.target.value)
-
         setP(e.target.value)
     }
 
     const handleU = (e) => {
-        console.log(e.target.value)
-
         setU(e.target.value)
     }
 
