@@ -56,7 +56,7 @@ export default function Card(props) {
               </HStack>
             </Stack>
           </Center>
-          <Center>
+          <Center className="card-image">
             <Box
               rounded={"lg"}
               pos={"relative"}
