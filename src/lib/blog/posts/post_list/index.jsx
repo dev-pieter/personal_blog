@@ -75,7 +75,7 @@ export default function PostList(props) {
                       heading={item.heading}
                       url={item.img_url}
                       views={item.views}
-                      readTime={calculateReadTime(item.markdown) + ' min' }
+                      readTime={calculateReadTime(item.markdown) + ' min read' }
                     ></Card>
                   </Link>
                 </div>

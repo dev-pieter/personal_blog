@@ -22,7 +22,7 @@ export default function Blog() {
   return (
     <>
       <Center maxWidth="100vw">
-        <Stack maxWidth="70%">
+        <Stack maxW="65%" className="blog-body">
           <Center className="bg-change" minH="20vh" borderRadius="xl" p="2">
             <Heading
               fontSize="3xl"
@@ -30,13 +30,12 @@ export default function Blog() {
               fontWeight="bold"
               textAlign="center"
             >
-              Hello friends 👋. Welcome to my blog 🚀.
+              Welcome to my blog 🚀.
             </Heading>
           </Center>
           <br />
           <Center>
             <Box
-              className="blog-body"
               lineHeight="20px"
               whiteSpace="break-spaces"
               maxW="100%"

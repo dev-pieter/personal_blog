@@ -62,7 +62,7 @@ export default function BlogComponent() {
         </CopyToClipboard>
       </HStack>
       <Center>
-        <Stack className="blog-body" maxW={"70%"}>
+        <Stack className="blog-body" maxW={"65%"}>
           <Heading textAlign="center">{post.data[0].heading}</Heading>
           <br />
           <ReactMarkdown>{"****"}</ReactMarkdown>

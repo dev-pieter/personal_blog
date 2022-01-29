@@ -51,8 +51,7 @@ export default function Card(props) {
                 {props.heading}
               </Heading>
               <HStack>
-                <Kbd colorScheme={"teal"}>Experience</Kbd>
-                <Kbd colorScheme={"green"}>{props.readTime}</Kbd>
+                <Kbd>{props.readTime}</Kbd>
               </HStack>
             </Stack>
           </Center>
