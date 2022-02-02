@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 import {
   IconButton,
   Box,
@@ -10,25 +10,21 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom'
-import {
-  FiMenu,
-} from 'react-icons/fi';
-import { Footer } from '../components';
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { FiMenu } from "react-icons/fi";
+import { Footer } from "../components";
+import { config } from "../../blog.config";
 
-const LinkItems = [
-  { name: 'daily dev', icon: 'https://images.unsplash.com/photo-1533279443086-d1c19a186416?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80', path: "/daily" },
-  { name: 'tutorials', icon: 'https://images.unsplash.com/photo-1510843572979-e4b9e790fdd7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80', path: "/tutorial"},
-];
+const LinkItems = config.blog_categories;
 
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
-        display={{ base: 'none', md: 'block' }}
+        display={{ base: "none", md: "block" }}
       />
       <Drawer
         autoFocus={false}
@@ -37,13 +33,14 @@ export default function SimpleSidebar({ children }) {
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size='xs'>
+        size="xs"
+      >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
+      <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
@@ -54,28 +51,29 @@ export default function SimpleSidebar({ children }) {
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue("white", "gray.900")}
       borderRight="1px"
-      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-      w={{ base: 'xs', md: 60 }}
+      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      w={{ base: "xs", md: 60 }}
       pos="fixed"
       h="full"
-      {...rest}>
+      {...rest}
+    >
       <Flex h="20" alignItems="center" mx="4" justifyContent="space-between">
         <Link to="/">
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          ✌️ dev_pieter
+            {config.blog_name}
           </Text>
         </Link>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} path={link.path}>
+        <NavItem key={link.name} icon={link.icon} path={`/${link.path}`}>
           {link.name}
         </NavItem>
       ))}
-      <Box position='absolute' w={'100%'} bottom={3}>
-        <Footer/>
+      <Box position="absolute" w={"100%"} bottom={3}>
+        <Footer />
       </Box>
     </Box>
   );
@@ -83,7 +81,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
 const NavItem = ({ icon, path, children, ...rest }) => {
   return (
-    <Link to={path} style={{ textDecoration: 'none' }}>
+    <Link to={path} style={{ textDecoration: "none" }}>
       <Flex
         fontFamily="monospace"
         fontSize="16"
@@ -94,20 +92,20 @@ const NavItem = ({ icon, path, children, ...rest }) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: 'cyan.400',
-          color: 'white',
+          bg: "cyan.400",
+          color: "white",
         }}
-        {...rest}>
+        {...rest}
+      >
         {icon && (
           <Image
             mr="4"
             _groupHover={{
-              color: 'white',
+              color: "white",
             }}
-            
             src={icon}
-            boxSize={'40px'}
-            borderRadius={'full'}
+            boxSize={"40px"}
+            borderRadius={"full"}
           />
         )}
         {children}
@@ -123,11 +121,12 @@ const MobileNav = ({ onOpen, ...rest }) => {
       px={{ base: 4, md: 24 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent="flex-start"
-      {...rest}>
+      {...rest}
+    >
       <IconButton
         variant="outline"
         onClick={onOpen}
@@ -136,7 +135,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       />
 
       <Text fontSize="xl" ml="8" fontFamily="monospace" fontWeight="bold">
-      ✌️ dev_pieter
+        {config.blog_name}
       </Text>
     </Flex>
   );

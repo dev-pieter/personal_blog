@@ -1,27 +1,29 @@
-import { Center, Heading, HStack, Stack } from '@chakra-ui/layout';
-import { Box, IconButton } from '@chakra-ui/react';
-import { useToast } from '@chakra-ui/toast';
-import axios from 'axios';
-import React from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { FaArrowLeft, FaShareAlt } from 'react-icons/fa';
-import ReactMarkdown from 'react-markdown';
-import { useQuery } from 'react-query';
-import { Link, useParams } from 'react-router-dom';
+import { Center, Heading, HStack, Stack } from "@chakra-ui/layout";
+import { Box, IconButton } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/toast";
+import axios from "axios";
+import React from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { FaArrowLeft, FaShareAlt } from "react-icons/fa";
+import ReactMarkdown from "react-markdown";
+import { useQuery } from "react-query";
+import { Link, useParams } from "react-router-dom";
 
-import { Footer, SyntaxHighlight } from '..';
+import { Footer, SyntaxHighlight } from "..";
+import { config } from "../../../blog.config";
+
+const base_url = config.blog_api_url;
 
 // import { Heading } from '@chakra-ui/layout'
 
 export default function BlogComponent() {
   const toast = useToast();
   const { id } = useParams();
-  const base_url = "https://api.devpieter.co.za/";
 
   const post = useQuery(
     "post_" + id,
     () => {
-      return axios.get(base_url + `post/${id}`).then((res) => {
+      return axios.get(base_url + `/post/${id}`).then((res) => {
         return res.data;
       });
     },
@@ -29,7 +31,7 @@ export default function BlogComponent() {
       onSuccess: async (data) => {
         const id = data[0]._id;
         if (!localStorage.getItem(id)) {
-          await axios.post(base_url + "add_view", { id: id });
+          await axios.post(base_url + "/add_view", { id: id });
           localStorage.setItem(id, "counted");
         }
       },
@@ -67,7 +69,10 @@ export default function BlogComponent() {
           <br />
           <ReactMarkdown>{"****"}</ReactMarkdown>
           <Box lineHeight="20px" whiteSpace="break-spaces" textAlign="justify">
-            <ReactMarkdown children={post.data[0].markdown} components={SyntaxHighlight}/>
+            <ReactMarkdown
+              children={post.data[0].markdown}
+              components={SyntaxHighlight}
+            />
           </Box>
           <Footer></Footer>
         </Stack>
