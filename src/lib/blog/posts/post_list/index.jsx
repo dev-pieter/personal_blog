@@ -16,14 +16,14 @@ import { Card } from "../../../components";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { dynamicSort, calculateReadTime } from "../../../utlis/utils";
+import { config } from "../../../../blog.config";
 
-const base_url = "https://api.devpieter.co.za";
-// const base_url = 'http://172.17.37.190:3001'
+const base_url = config.blog_api_url;
 
 const sorts = [
-  {value: "-created_at", name: "↑ Post date"},
-  {value: "-updated_at", name: "↑ Last updated"}
-]
+  { value: "-created_at", name: "↑ Post date" },
+  { value: "-updated_at", name: "↑ Last updated" },
+];
 
 export default function PostList(props) {
   const [view, setView] = useState("cards");
@@ -65,10 +65,16 @@ export default function PostList(props) {
           <HStack>
             <InputGroup width={"80%"}>
               <InputLeftElement children={<SearchIcon />} />
-              <Input variant="Outline" placeholder="Search" onChange={onSearch} />
+              <Input
+                variant="Outline"
+                placeholder="Search"
+                onChange={onSearch}
+              />
             </InputGroup>
             <Select width={"20%"} onChange={(e) => setOrder(e.target.value)}>
-              {sorts.map(item => (<option value={item.value}>{item.name}</option>))}
+              {sorts.map((item) => (
+                <option value={item.value}>{item.name}</option>
+              ))}
             </Select>
           </HStack>
           {posts.sort(dynamicSort(order)).map((item, key) => {
@@ -82,7 +88,7 @@ export default function PostList(props) {
                       heading={item.heading}
                       url={item.img_url}
                       views={item.views}
-                      readTime={calculateReadTime(item.markdown) + ' min read' }
+                      readTime={calculateReadTime(item.markdown) + " min read"}
                       date={new Date(item.created_at).toDateString()}
                     ></Card>
                   </Link>

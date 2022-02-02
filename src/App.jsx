@@ -1,15 +1,18 @@
 import "./styles/App.css";
+
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Redirect,
+  Route,
+  Switch,
 } from "react-router-dom";
-import Navbar from "./lib/dashboard/navbar";
-import PostList from "./lib/blog/posts/post_list";
-import Blog from "./lib/blog/posts/home";
+
 import Admin from "./lib/admin";
+import Blog from "./lib/blog/posts/home";
+import PostList from "./lib/blog/posts/post_list";
 import { BlogComponent } from "./lib/components";
+import Navbar from "./lib/dashboard/navbar";
+import { config } from "./blog.config";
 
 function App() {
   return (
@@ -22,12 +25,13 @@ function App() {
           <Route exact path="/admin">
             <Admin></Admin>
           </Route>
-          <Route exact path="/daily">
-            <PostList cat="daily"></PostList>
-          </Route>
-          <Route exact path="/tutorial">
-            <PostList cat="tutorial"></PostList>
-          </Route>
+          {config.blog_categories.map((cat) => {
+            return (
+              <Route exact path={`/${cat.path}`}>
+                <PostList cat={cat.path}></PostList>
+              </Route>
+            );
+          })}
           <Route path="/posts/:id">
             <BlogComponent></BlogComponent>
           </Route>

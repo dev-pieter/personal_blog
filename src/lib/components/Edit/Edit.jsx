@@ -18,8 +18,9 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { useMutation } from "react-query";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
+import { config } from "../../../blog.config";
 
-const base_url = "https://api.devpieter.co.za/";
+const base_url = config.blog_api_url;
 
 export default function Edit({ post }) {
   var toast = useToast();
@@ -28,7 +29,7 @@ export default function Edit({ post }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const update = useMutation(async (obj) => {
-    axios.post(base_url + "update_post", obj).then((res) => {
+    axios.post(base_url + "/update_post", obj).then((res) => {
       toast({
         title: "Post updated successfully",
         status: "success",
@@ -37,7 +38,7 @@ export default function Edit({ post }) {
   });
 
   const deletePost = useMutation(async (obj) => {
-    axios.post(base_url + "delete_post", obj).then((res) => {
+    axios.post(base_url + "/delete_post", obj).then((res) => {
       toast({
         title: "Post deleted successfully",
         status: "success",
@@ -75,7 +76,9 @@ export default function Edit({ post }) {
         <Button bg="white" onClick={onOpen}>
           edit
         </Button>
-        <Button colorScheme="red" onClick={onDelete}>delete</Button>
+        <Button colorScheme="red" onClick={onDelete}>
+          delete
+        </Button>
       </HStack>
 
       <Modal isOpen={isOpen} onClose={onClose} size="2xl">

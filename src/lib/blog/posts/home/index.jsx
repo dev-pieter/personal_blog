@@ -8,8 +8,9 @@ import axios from "axios";
 import { Card, Footer } from "../../../components";
 import { dynamicSort, calculateReadTime } from "../../../utlis/utils";
 import HomePost from "./home.md";
+import { config } from "../../../../blog.config";
 
-const base_url = "https://api.devpieter.co.za";
+const base_url = config.blog_api_url;
 
 export default function Blog() {
   const [post, setPost] = useState();
@@ -45,13 +46,13 @@ export default function Blog() {
               fontWeight="bold"
               textAlign="center"
             >
-              Welcome to my blog 🚀.
+              {config.blog_intro}
             </Heading>
           </Center>
           <br />
           <Center>
-            <Stack spacing={'20px'}>
-              <p style={{fontWeight: 'bold'}}>Latest post:</p>
+            <Stack spacing={"20px"}>
+              <p style={{ fontWeight: "bold" }}>Latest post:</p>
               {post && (
                 <Link to={`/posts/${post._id}`}>
                   <Card
@@ -64,7 +65,7 @@ export default function Blog() {
                   ></Card>
                 </Link>
               )}
-              <p style={{fontWeight: 'bold'}}>About:</p>
+              <p style={{ fontWeight: "bold" }}>About:</p>
               <Box lineHeight="20px" whiteSpace="break-spaces" maxW="100%">
                 <ReactMarkdown>{markdown.text}</ReactMarkdown>
               </Box>

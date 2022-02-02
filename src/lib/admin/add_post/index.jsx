@@ -1,27 +1,28 @@
-import { useDisclosure } from '@chakra-ui/hooks';
+import { useDisclosure } from "@chakra-ui/hooks";
 import {
-    Button,
-    HStack,
-    Input,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalHeader,
-    ModalOverlay,
-    Select,
-    Stack,
-    Text,
-    Textarea,
-} from '@chakra-ui/react';
-import { useToast } from '@chakra-ui/toast';
-import axios from 'axios';
-import React from 'react';
-import { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import { useMutation } from 'react-query';
+  Button,
+  HStack,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Select,
+  Stack,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/toast";
+import axios from "axios";
+import React from "react";
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { useMutation } from "react-query";
+import { config } from "../../../blog.config";
 
-const base_url = "https://api.devpieter.co.za";
+const base_url = config.blog_api_url;
 
 export default function AddPost() {
   var toast = useToast();
@@ -41,7 +42,7 @@ export default function AddPost() {
     axios
       .post(base_url + "/add_post", {
         post,
-        token
+        token,
       })
       .then((res) => {
         toast({
@@ -82,7 +83,7 @@ export default function AddPost() {
 
   const handleSubmit = () => {
     const d = {
-      ...data
+      ...data,
     };
 
     submit.mutate(d);
@@ -112,7 +113,7 @@ export default function AddPost() {
               <Text as="label">Image url</Text>
               <Input placeholder="img url" onChange={handleUrl} />
               <Text as="label">Markdown text area</Text>
-              <div onClick={() => setPreview(data => (!data))}>preview</div>
+              <div onClick={() => setPreview((data) => !data)}>preview</div>
               {preview ? (
                 <ReactMarkdown children={data.markdown} />
               ) : (

@@ -1,93 +1,99 @@
 import {
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Center,
-    Stack,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-  } from '@chakra-ui/react';
-import axios from 'axios';
-import { useState } from 'react';
-import { useMutation } from 'react-query';
-  
-  export default function Login(props) {
-    const [u, setU] = useState('')
-    const [p, setP] = useState('')
-    const base_url = 'https://api.devpieter.co.za'
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Center,
+  Stack,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import axios from "axios";
+import { useState } from "react";
+import { useMutation } from "react-query";
+import { config } from "../../../blog.config";
 
-    const login = useMutation((obj) => {
-        return axios.post(base_url + '/login', obj)
-            .then(res => {
-                if(res.data.success !== undefined){
-                    sessionStorage.setItem('token', res.data.success)
-                    props.setToken(res.data.success)
-                    return res.data
-                }else{
-                    throw 'Error'
-                }
-            })
-    })
+const base_url = config.blog_api_url;
 
-    const handleP = (e) => {
-        setP(e.target.value)
-    }
+export default function Login(props) {
+  const [u, setU] = useState("");
+  const [p, setP] = useState("");
 
-    const handleU = (e) => {
-        setU(e.target.value)
-    }
+  const login = useMutation((obj) => {
+    return axios.post(base_url + "/login", obj).then((res) => {
+      if (res.data.success !== undefined) {
+        sessionStorage.setItem("token", res.data.success);
+        props.setToken(res.data.success);
+        return res.data;
+      } else {
+        throw "Error";
+      }
+    });
+  });
 
-    const handleLogin = () => {
-        const obj = {
-            username : u,
-            password : p,
-        }
+  const handleP = (e) => {
+    setP(e.target.value);
+  };
 
-        login.mutate(obj)
+  const handleU = (e) => {
+    setU(e.target.value);
+  };
 
-        }
+  const handleLogin = () => {
+    const obj = {
+      username: u,
+      password: p,
+    };
 
-    return (
-      <Center h={'95vh'}>
-        <Stack spacing={8} mx={'auto'} maxW={'md'} py={12} px={6} minW="40vw">
-          <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Sign in as admin</Heading>
-            <Text fontSize={'lg'} color={'gray.600'}>
-              to add / edit blog post ✌️
+    login.mutate(obj);
+  };
+
+  return (
+    <Center h={"95vh"}>
+      <Stack spacing={8} mx={"auto"} maxW={"md"} py={12} px={6} minW="40vw">
+        <Stack align={"center"}>
+          <Heading fontSize={"4xl"}>Sign in as admin</Heading>
+          <Text fontSize={"lg"} color={"gray.600"}>
+            to add / edit blog post ✌️
+          </Text>
+          {login.isError ? (
+            <Text fontSize={"lg"} color={"red"}>
+              LOGIN ERROR {}
             </Text>
-            {login.isError ? <Text fontSize={'lg'} color={'red'}>LOGIN ERROR {}</Text> : null}
-          </Stack>
-          <Box
-            rounded={'lg'}
-            bg={useColorModeValue('white', 'gray.700')}
-            boxShadow={'lg'}
-            p={8}>
-            <Stack spacing={4}>
-              <FormControl id="email">
-                <FormLabel>Email or Username</FormLabel>
-                <Input type="text" onChange={handleU}/>
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <Input type="password" onChange={handleP}/>
-              </FormControl>
-              <Stack spacing={10}>
-                <Button
-                  bg={'blue.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.500',
-                  }}
-                  onClick={handleLogin}>
-                  Sign in
-                </Button>
-              </Stack>
-            </Stack>
-          </Box>
+          ) : null}
         </Stack>
-      </Center>
-    );
-  }
+        <Box
+          rounded={"lg"}
+          bg={useColorModeValue("white", "gray.700")}
+          boxShadow={"lg"}
+          p={8}
+        >
+          <Stack spacing={4}>
+            <FormControl id="email">
+              <FormLabel>Email or Username</FormLabel>
+              <Input type="text" onChange={handleU} />
+            </FormControl>
+            <FormControl id="password">
+              <FormLabel>Password</FormLabel>
+              <Input type="password" onChange={handleP} />
+            </FormControl>
+            <Stack spacing={10}>
+              <Button
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+                onClick={handleLogin}
+              >
+                Sign in
+              </Button>
+            </Stack>
+          </Stack>
+        </Box>
+      </Stack>
+    </Center>
+  );
+}

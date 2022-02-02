@@ -3,8 +3,9 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { Edit } from "..";
 import { Table, Thead, Tbody, Tr, Th, Td, Center } from "@chakra-ui/react";
+import { config } from "../../../blog.config";
 
-const base_url = "https://api.devpieter.co.za";
+const base_url = config.blog_api_url;
 
 export default function TableView({ children }) {
   const interval = 1000;
