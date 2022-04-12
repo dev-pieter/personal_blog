@@ -11,6 +11,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { Footer, SyntaxHighlight } from "..";
 import { config } from "../../../blog.config";
+import SEO from "../../seo/seo";
 
 const base_url = config.blog_api_url;
 
@@ -51,6 +52,7 @@ export default function BlogComponent() {
 
   return (
     <>
+      <SEO title={post.data[0].heading} description={post.data[0].markdown.slice(0, post.data[0].markdown.indexOf('.'))} />
       <HStack>
         <Link to={`/${post.data[0].category}`}>
           <IconButton
