@@ -11,7 +11,7 @@ import App from "./App";
 import theme from "./styles/theme";
 
 const queryClient = new QueryClient();
-ReactGA.initialize("G-HG0NJJ53GB");
+ReactGA.initialize("UA-227468019-1");
 
 ReactDOM.render(
   <React.StrictMode>
