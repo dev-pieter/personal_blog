@@ -17,7 +17,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { dynamicSort, calculateReadTime } from "../../../utlis/utils";
 import { config } from "../../../../blog.config";
-import SEO from '../../../seo/seo';
+import SEO from "../../../seo/seo";
 
 const base_url = config.blog_api_url;
 
@@ -62,7 +62,7 @@ export default function PostList(props) {
   if (view === "cards") {
     return (
       <Center minW="100%">
-        <SEO title="Posts" description={`Blog posts on ${props.cat}`}/>
+        <SEO title="Posts" description={`Blog posts on ${props.cat}`} />
         <SimpleGrid columns={[1, 1, 1]} gap={"20px"} minW="70%">
           <HStack>
             <InputGroup width={"80%"}>
