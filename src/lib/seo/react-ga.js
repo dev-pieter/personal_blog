@@ -1,5 +1,5 @@
 import ReactGA from "react-ga";
 
-export const pageViews = () => {
-  ReactGA.pageview(window.location.pathname);
+export const pageViews = (page) => {
+  ReactGA.pageview(`${window.location.pathname} - ${page}`);
 };

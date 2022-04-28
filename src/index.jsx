@@ -3,7 +3,6 @@ import "./styles/index.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
-import ReactGA from "react-ga";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
@@ -11,7 +10,6 @@ import App from "./App";
 import theme from "./styles/theme";
 
 const queryClient = new QueryClient();
-ReactGA.initialize("UA-227468019-1");
 
 ReactDOM.render(
   <React.StrictMode>
