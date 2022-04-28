@@ -13,28 +13,48 @@ import PostList from "./lib/blog/posts/post_list";
 import { BlogComponent } from "./lib/components";
 import Navbar from "./lib/dashboard/navbar";
 import { config } from "./blog.config";
+import { pageViews } from "./lib/seo/react-ga";
 
 function App() {
   return (
     <Router>
       <Navbar>
         <Switch>
-          <Route exact path="/">
-            <Blog></Blog>
-          </Route>
-          <Route exact path="/admin">
-            <Admin></Admin>
-          </Route>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              pageViews();
+              return <Blog />;
+            }}
+          />
+          <Route
+            exact
+            path="/admin"
+            render={() => {
+              pageViews();
+              return <Admin />;
+            }}
+          />
           {config.blog_categories.map((cat) => {
             return (
-              <Route exact path={`/${cat.path}`}>
-                <PostList cat={cat.path}></PostList>
-              </Route>
+              <Route
+                exact
+                path={`/${cat.path}`}
+                render={() => {
+                  pageViews();
+                  return <PostList cat={cat.path} />;
+                }}
+              />
             );
           })}
-          <Route path="/posts/:id">
-            <BlogComponent></BlogComponent>
-          </Route>
+          <Route
+            path="/posts/:id"
+            render={() => {
+              pageViews();
+              return <BlogComponent />;
+            }}
+          />
           <Route>
             <Redirect to="/admin"></Redirect>
           </Route>

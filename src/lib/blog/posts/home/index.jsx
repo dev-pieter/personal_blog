@@ -1,15 +1,15 @@
-import { Box, Center, Heading, Stack } from '@chakra-ui/react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
+import { Box, Center, Heading, Stack } from "@chakra-ui/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
-import { config } from '../../../../blog.config';
-import { Card, Footer } from '../../../components';
-import SEO from '../../../seo/seo';
-import { calculateReadTime, dynamicSort } from '../../../utlis/utils';
-import HomePost from './home.md';
+import { config } from "../../../../blog.config";
+import { Card, Footer } from "../../../components";
+import SEO from "../../../seo/seo";
+import { calculateReadTime, dynamicSort } from "../../../utlis/utils";
+import HomePost from "./home.md";
 
 const base_url = config.blog_api_url;
 
