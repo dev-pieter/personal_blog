@@ -34,7 +34,7 @@ function App() {
               return <Blog />;
             }}
           />
-          <Route exact path="/admin" render={<Admin />} />
+          <Route exact path="/admin" render={() => <Admin />} />
           {config.blog_categories.map((cat) => {
             return (
               <Route

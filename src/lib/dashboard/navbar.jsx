@@ -1,20 +1,21 @@
-import React, { ReactNode } from "react";
 import {
-  IconButton,
   Box,
   CloseButton,
-  Flex,
-  Image,
-  useColorModeValue,
   Drawer,
   DrawerContent,
+  Flex,
+  IconButton,
+  Image,
   Text,
+  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { FiMenu } from "react-icons/fi";
-import { Footer } from "../components";
+import { Link } from "react-router-dom";
+
 import { config } from "../../blog.config";
+import { Footer } from "../components";
 
 const LinkItems = config.blog_categories;
 

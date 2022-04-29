@@ -1,7 +1,7 @@
 export const config = {
-  blog_name: "✌️ dev-pieter",
+  blog_name: "💻 dev-pieter",
   blog_description: "A blog for programmers.",
-  blog_intro: "Welcome to my dev blog.",
+  blog_intro: "Welcome to my Developer Blog",
   blog_api_url: "https://api.devpieter.co.za",
   blog_categories: [
     {
