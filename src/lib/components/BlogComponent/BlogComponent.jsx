@@ -8,6 +8,7 @@ import { FaArrowLeft, FaShareAlt } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
+import { FastCommentsCommentWidget } from "fastcomments-react";
 
 import { Footer, SyntaxHighlight } from "..";
 import { config } from "../../../blog.config";
@@ -52,7 +53,13 @@ export default function BlogComponent() {
 
   return (
     <>
-      <SEO title={post.data[0].heading} description={post.data[0].markdown.slice(0, post.data[0].markdown.indexOf('.'))} />
+      <SEO
+        title={post.data[0].heading}
+        description={post.data[0].markdown.slice(
+          0,
+          post.data[0].markdown.indexOf(".")
+        )}
+      />
       <HStack>
         <Link to={`/${post.data[0].category}`}>
           <IconButton
@@ -70,12 +77,21 @@ export default function BlogComponent() {
           <Heading textAlign="center">{post.data[0].heading}</Heading>
           <br />
           <ReactMarkdown>{"****"}</ReactMarkdown>
-          <Box lineHeight="20px" whiteSpace="break-spaces" textAlign="justify">
+          <Box
+            lineHeight="20px"
+            whiteSpace="break-spaces"
+            textAlign="justify"
+            paddingBottom="28px"
+          >
             <ReactMarkdown
               children={post.data[0].markdown}
               components={SyntaxHighlight}
             />
           </Box>
+          <FastCommentsCommentWidget
+            tenantId={"_U40v-B5ayp"}
+            urlId={post.data[0].heading}
+          />
           <Footer></Footer>
         </Stack>
       </Center>
