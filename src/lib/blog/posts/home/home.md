@@ -1,17 +1,13 @@
-*****
+I created this blog just to document, and share my findings throughout my Software Engineering career. One of the purposes of having this blog is actually to force myself to learn more, and explore new areas in software as a whole. So I hope you enjoy these articles and find them helpful.
 
-Here you will find the day-to-day of a working software engineer:
+Some more about me:
 
+- 🚀 I'm an aspiring software engineer always eager to learn
+- 🎓 Proficient in: JavaScript, C++, C#, Python, SQL, Mongo
+- ☕ I like my Java serverd in a cup, not strongly typed.
 
-- Some tips and tricks 
-- Advice on topics related to programming 
-- Tutorials
+> Programming isn't about what you know; it's about what you can figure out.
 
+Please contact me if you have any ideas for posts or tutorials that you would like to see. Also feel free to just send me an email to chat about software and the wonders of this industry. **[pieter_nortje@outlook.com](mailto:pieter_nortje@outlook.com)**
 
-*****
-I'd love to have you stick around so I can share the knowledge I aqcuire through my experiences. I'm in no means an expert developer, but I know a thing or two about software and I'd like to share it with anyone willing to learn.
-
-*****
-
-If you'd like to contact me directly, send me an email **[pieter_nortje@outlook.com](mailto:pieter_nortje@outlook.com)**
-*****
+---

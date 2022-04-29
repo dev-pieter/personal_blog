@@ -1,84 +1,103 @@
 ol,
 ul {
-    margin: 0;
-    padding-left: 40px !important;
+  margin: 0;
+  padding-left: 40px !important;
 }
 
 h1 {
-    font-size: 20px !important;
-    line-height: 1.5;
+  font-size: 20px !important;
+  line-height: 1.5;
 }
 pre,
 code,
 samp {
-    -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
-    max-width: 100%;
-    min-width: 100px;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  max-width: 100%;
+  min-width: 100px;
+}
+
+blockquote {
+  color: #666;
+  font-style: italic;
+  margin: 0;
+  padding-left: 2em;
+  border-left: 0.5em rgb(185, 185, 185) solid;
+}
+
+kbd {
+  color: rgb(102, 102, 102) !important;
+  padding: 3px 2px;
+}
+
+.subHeading {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(70, 70, 70);
 }
 
 .example::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 @keyframes bgcolor {
-    0% {
-        background-color: #fc466a9a
-    }
-    30% {
-        background-color: #3f5efb85
-    }
-    60% {
-        background-color: #fc466a9a
-    }
-    90% {
-        background-color: #3f5efb85
-    }
-    100% {
-        background-color: #fc466a9a
-    }
+  0% {
+    background-color: #fd8844f5;
+  }
+  30% {
+    background-color: #3f5efb85;
+  }
+  60% {
+    background-color: #fc46469a;
+  }
+  90% {
+    background-color: #3f5efb85;
+  }
+  100% {
+    background-color: #fc4646de;
+  }
 }
 
 .background-image {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    height: 30vh;
-    overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
 }
 
 .bg-change {
-    -webkit-animation: bgcolor 20s infinite;
-    animation: bgcolor 10s infinite;
-    -webkit-animation-direction: alternate;
-    animation-direction: alternate;
+  -webkit-animation: bgcolor 20s infinite;
+  animation: bgcolor 10s infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
 
 .rocket-hover:hover {
-    cursor: pointer;
-    transform: scale(1.1);
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .card-image {
-    display: block !important;
+  display: block !important;
 }
 
 @media screen and (max-width: 1400px) {
-    .blog-body {
-        max-width: 75vw !important;
-    }
+  .blog-body {
+    max-width: 75vw !important;
+  }
 
-    .card-image {
-        display: block !important;
-    }
+  .card-image {
+    display: block !important;
+  }
 }
 
 @media screen and (max-width: 500px) {
-    .blog-body {
-        max-width: 90vw !important;
-    }
+  .blog-body {
+    max-width: 90vw !important;
+  }
 
-    .card-image {
-        display: none !important;
-    }
+  .card-image {
+    display: none !important;
+  }
 }

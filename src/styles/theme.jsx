@@ -12,7 +12,7 @@ const theme = extendTheme({
       a: {
         color: "orange.400",
         _hover: {
-          textDecoration: "underline",
+          color: "orange.300",
         },
       },
     },
