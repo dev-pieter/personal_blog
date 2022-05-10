@@ -15,8 +15,6 @@ import { Spinner } from "@chakra-ui/react";
 import { extractMetaData } from "../../../utlis/utils";
 import { fetchAllPosts } from "../../../../controllers/postController";
 
-const base_url = config.blog_api_url;
-
 export default function Blog() {
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(true);
