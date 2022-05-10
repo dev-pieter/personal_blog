@@ -1,15 +1,18 @@
 import {
   Box,
+  Center,
   Flex,
+  HStack,
   Text,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { Link, withRouter } from "react-router-dom";
 
 import { config } from "../../../blog.config";
+import { Footer } from "../../components";
 
 const LinkItems = config.blog_categories;
 
@@ -18,9 +21,22 @@ function SimpleSidebar({ children, history }) {
 
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+      <Center bg={"white"} zIndex="10" p="10px">
+        <Text
+          fontSize="xl"
+          ml="8"
+          fontFamily="monospace"
+          fontWeight="bold"
+          mr="4"
+          display={{ base: "block", md: "none" }}
+        >
+          {config.blog_name}
+        </Text>
+      </Center>
       <MobileNav onOpen={onOpen} history={history} />
       <Box p="4" width={{ base: "100%", md: "796px" }} margin="auto">
         {children}
+        <Footer></Footer>
       </Box>
     </Box>
   );
@@ -99,6 +115,23 @@ const MobileNav = ({ onOpen, history, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
+      <HStack
+        p={"10"}
+        spacing={"5"}
+        ml="auto"
+        display={{ base: "none", md: "flex" }}
+      >
+        <Box _hover={{ transform: "scale(1.2)" }} cursor="pointer">
+          <Link href="https://github.com/dev-pieter">
+            <FaGithub fontSize={"25px"} />
+          </Link>
+        </Box>
+        <Box _hover={{ transform: "scale(1.2)" }} cursor="pointer">
+          <Link href="https://www.linkedin.com/in/pieternortje">
+            <FaLinkedinIn fontSize={"25px"} />
+          </Link>
+        </Box>
+      </HStack>
     </Flex>
   );
 };

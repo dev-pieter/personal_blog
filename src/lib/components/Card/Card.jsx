@@ -92,18 +92,6 @@ export default function Card(props) {
               />
             </Box>
           </Center>
-          <HStack
-            position="absolute"
-            right={6}
-            top={6}
-            spacing={"3"}
-            color={"gray.400"}
-          >
-            <HStack spacing={"1"}>
-              <Text fontSize="sm">{props.views || 0}</Text>
-              <FaEye />
-            </HStack>
-          </HStack>
           {/* <Stack direction={'row'} align={'center'}>
                     <Text fontWeight={800} fontSize={'xl'}>
                     $57
@@ -117,7 +105,9 @@ export default function Card(props) {
           {props.renderIntroBody && (
             <>
               {props.renderIntroBody()}
-              <Link textDecoration={"underline"}>Read more</Link>
+              <Text textDecoration={"underline"} _hover={{ color: "orange" }}>
+                Read more
+              </Text>
             </>
           )}
         </Box>

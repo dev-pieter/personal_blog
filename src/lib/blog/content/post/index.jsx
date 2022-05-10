@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { FastCommentsCommentWidget } from "fastcomments-react";
 import { extractMetaData, hasKey } from "../../../utlis/utils";
+import { withRouter } from "react-router-dom";
 
 import { Footer, SyntaxHighlight } from "../../../components";
 import { config } from "../../../../blog.config";
@@ -18,7 +19,7 @@ import { fetchPostsById } from "../../../../controllers/postController";
 
 const base_url = config.blog_api_url;
 
-export default function BlogComponent() {
+function BlogComponent({ history }) {
   const [post, setPost] = useState();
   const toast = useToast();
   const { id } = useParams();
@@ -28,7 +29,7 @@ export default function BlogComponent() {
   );
 
   useEffect(() => {
-    if (data && !post) {
+    if (data && !post && !data[0].markdown.content) {
       const parsedPost = parseMeta(data[0]);
       setPost({ ...parsedPost });
     }
@@ -52,21 +53,19 @@ export default function BlogComponent() {
 
   return (
     <>
-      <SEO
-        title={post.heading}
-        description={post.markdown.content.slice(
-          0,
-          post.markdown.content.indexOf(".")
-        )}
-      />
+      {typeof post.markdown.content === "string" && (
+        <SEO
+          title={post.heading}
+          description={post.markdown.content.slice(
+            0,
+            post.markdown.content.indexOf(".")
+          )}
+        />
+      )}
       <HStack>
-        <Link to={`/${post.category}`}>
-          <IconButton
-            margin={"10px"}
-            aria-label="Back"
-            icon={<FaArrowLeft />}
-          />
-        </Link>
+        <Box onClick={() => history.goBack()}>
+          <IconButton aria-label="Back" icon={<FaArrowLeft />} />
+        </Box>
         <CopyToClipboard onCopy={handleCopy} text={window.location}>
           <IconButton icon={<FaShareAlt />} />
         </CopyToClipboard>
@@ -98,12 +97,13 @@ export default function BlogComponent() {
             tenantId={"_U40v-B5ayp"}
             urlId={post.heading}
           />
-          <Footer></Footer>
         </Stack>
       </Center>
     </>
   );
 }
+
+export default withRouter(BlogComponent);
 
 const parseMeta = (data) => {
   const [rawMeta, metaData] = extractMetaData(data.markdown);
@@ -114,8 +114,6 @@ const parseMeta = (data) => {
   }
 
   data.markdown = { content: data.markdown.replace(rawMeta[0], ""), metaData };
-
-  console.log(data);
 
   return data;
 };
