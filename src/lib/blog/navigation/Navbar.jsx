@@ -17,23 +17,26 @@ import { Footer } from "../../components";
 const LinkItems = config.blog_categories;
 
 function SimpleSidebar({ children, history }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
-      <Center bg={"white"} zIndex="10" p="10px">
+      <Center
+        bg={"white"}
+        zIndex="10"
+        pl="10px"
+        pt="10px"
+        display={{ base: "block", md: "none" }}
+      >
         <Text
           fontSize="xl"
           ml="8"
           fontFamily="monospace"
           fontWeight="bold"
           mr="4"
-          display={{ base: "block", md: "none" }}
         >
           {config.blog_name}
         </Text>
       </Center>
-      <MobileNav onOpen={onOpen} history={history} />
+      <MobileNav history={history} />
       <Box p="4" width={{ base: "100%", md: "796px" }} margin="auto">
         {children}
         <Footer></Footer>
@@ -58,13 +61,13 @@ const NavItem = ({ icon, path, children, active, ...rest }) => {
         _hover={{ color: "orange" }}
         {...rest}
       >
-        /{children}
+        {children}
       </Flex>
     </Link>
   );
 };
 
-const MobileNav = ({ onOpen, history, ...rest }) => {
+const MobileNav = ({ history, ...rest }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const loadIndex = (path) => {
