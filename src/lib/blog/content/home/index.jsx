@@ -19,6 +19,7 @@ const base_url = config.blog_api_url;
 
 export default function Blog() {
   const [post, setPost] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [markdown, setMarkdown] = useState({
     text: "",
   });
@@ -30,6 +31,7 @@ export default function Blog() {
       .then((res) => res.text())
       .then((text) => {
         setMarkdown(parseMeta(text));
+        setLoading(false);
       });
   }, []);
 
@@ -44,6 +46,14 @@ export default function Blog() {
       setPost(posts.sort(dynamicSort("-created_at")));
     }
   }, [data]);
+
+  if (loading || isLoading) {
+    return (
+      <Center>
+        <Spinner />
+      </Center>
+    );
+  }
 
   return (
     <>
