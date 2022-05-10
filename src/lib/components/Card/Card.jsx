@@ -1,33 +1,33 @@
 import {
   Box,
   Center,
-  useColorModeValue,
   Heading,
-  Text,
-  Stack,
-  SimpleGrid,
   HStack,
   Image,
-  Kbd,
-  Link,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
-import { FaEye } from "react-icons/fa";
+import React from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function Card(props) {
   const IMAGE = props.url;
 
   return (
-    <Center cursor={"pointer"} pb={6}>
+    <Center pb={6}>
       <Stack>
         <Box display={"flex"} gap={"30px"} alignItems={"center"}>
           <Center width={{ base: "100%", md: "70%" }}>
             <Stack textAlign="left" spacing={3} h={"100%"}>
               <Heading
+                cursor={"pointer"}
+                onClick={() => props.history.push(props.postLink)}
                 fontFamily={"monospace"}
                 textAlign={"left"}
-                fontSize={"xl"}
+                fontSize={"2xl"}
                 fontWeight={500}
                 color={"black"}
+                _hover={{ textDecoration: "underline" }}
               >
                 {props.heading}
               </Heading>
@@ -101,15 +101,24 @@ export default function Card(props) {
                     </Text>
                 </Stack> */}
         </Box>
-        <Box textAlign={"justify"} color={"gray.500"} pt={3}>
+        <Box textAlign={"justify"} color={"gray.500"}>
           {props.renderIntroBody && (
             <>
               {props.renderIntroBody()}
-              <Text textDecoration={"underline"} _hover={{ color: "orange" }}>
+              <Text
+                textDecoration={"underline"}
+                _hover={{ color: "orange" }}
+                cursor={"pointer"}
+                onClick={() => props.history.push(props.postLink)}
+                pt={"5px"}
+                pb={"28px"}
+                width={"fit-content"}
+              >
                 Read more
               </Text>
             </>
           )}
+          <ReactMarkdown>***</ReactMarkdown>
         </Box>
       </Stack>
     </Center>

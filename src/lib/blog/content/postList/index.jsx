@@ -21,13 +21,14 @@ import { fetchPostsByCat } from "../../../../controllers/postController";
 import { Card } from "../../../components";
 import SEO from "../../../seo/seo";
 import { calculateReadTime, dynamicSort } from "../../../utlis/utils";
+import { withRouter } from "react-router-dom";
 
 const sorts = [
   { value: "-created_at", name: "↑ Post date" },
   { value: "-updated_at", name: "↑ Last updated" },
 ];
 
-export default function PostList(props) {
+function PostList(props) {
   const [posts, setPosts] = useState([]);
   const [order, setOrder] = useState(sorts[1].value);
 
@@ -71,29 +72,35 @@ export default function PostList(props) {
             <InputLeftElement children={<SearchIcon />} />
             <Input variant="Outline" placeholder="Search" onChange={onSearch} />
           </InputGroup>
-          <Select width={"30%"} onChange={(e) => setOrder(e.target.value)}>
-            {sorts.map((item) => (
-              <option key={item.value} value={item.value}>
-                {item.name}
-              </option>
-            ))}
-          </Select>
+          <InputGroup width={"30%"} bg="white">
+            <Select
+              border={"none"}
+              onChange={(e) => setOrder(e.target.value)}
+              variant="outline"
+            >
+              {sorts.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.name}
+                </option>
+              ))}
+            </Select>
+          </InputGroup>
         </HStack>
         {posts.sort(dynamicSort(order)).map((item) => {
           if (item.markdown) {
             return (
               <div key={item.heading}>
-                <Link to={`/posts/${item._id}`}>
-                  <Card
-                    author={item.author}
-                    heading={item.heading}
-                    url={item.img_url}
-                    views={item.views}
-                    renderIntroBody={() => renderIntroBody(item)}
-                    readTime={calculateReadTime(item.markdown) + " min read"}
-                    date={new Date(item.created_at).toDateString()}
-                  ></Card>
-                </Link>
+                <Card
+                  author={item.author}
+                  heading={item.heading}
+                  url={item.img_url}
+                  views={item.views}
+                  renderIntroBody={() => renderIntroBody(item)}
+                  readTime={calculateReadTime(item.markdown) + " min read"}
+                  date={new Date(item.created_at).toDateString()}
+                  postLink={`/posts/${item._id}`}
+                  history={props.history}
+                ></Card>
               </div>
             );
           }
@@ -102,6 +109,8 @@ export default function PostList(props) {
     </Center>
   );
 }
+
+export default withRouter(PostList);
 
 const renderIntroBody = (data) => {
   const [rawMeta, metaData] = extractMetaData(data.markdown);

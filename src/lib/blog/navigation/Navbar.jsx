@@ -6,10 +6,12 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
+  Link,
+  Image,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { Link, withRouter } from "react-router-dom";
+import { Link as RouterLink, withRouter } from "react-router-dom";
 
 import { config } from "../../../blog.config";
 import { Footer } from "../../components";
@@ -22,17 +24,11 @@ function SimpleSidebar({ children, history }) {
       <Center
         bg={"white"}
         zIndex="10"
+        display={{ base: "block", md: "none" }}
         pl="10px"
         pt="10px"
-        display={{ base: "block", md: "none" }}
       >
-        <Text
-          fontSize="xl"
-          ml="8"
-          fontFamily="monospace"
-          fontWeight="bold"
-          mr="4"
-        >
+        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mr="4">
           {config.blog_name}
         </Text>
       </Center>
@@ -47,23 +43,25 @@ function SimpleSidebar({ children, history }) {
 
 const NavItem = ({ icon, path, children, active, ...rest }) => {
   return (
-    <Link to={path} style={{ textDecoration: "none" }}>
+    <RouterLink to={path} style={{ textDecoration: "none" }}>
       <Flex
+        mr="6"
         fontFamily="monospace"
         fontSize="16"
         align="center"
-        ml="6"
         borderRadius="lg"
         role="group"
         cursor="pointer"
         textDecoration={active && "underline"}
-        color={active ? "orange" : "black"}
-        _hover={{ color: "orange" }}
+        color={active ? "orange.400" : "black"}
+        _hover={{ color: "orange.300" }}
+        gap="5px"
         {...rest}
       >
+        {icon}
         {children}
       </Flex>
-    </Link>
+    </RouterLink>
   );
 };
 
@@ -85,8 +83,6 @@ const MobileNav = ({ history, ...rest }) => {
 
   return (
     <Flex
-      ml={0}
-      px={4}
       height="20"
       alignItems="center"
       bg={useColorModeValue("white", "gray.900")}
@@ -96,14 +92,16 @@ const MobileNav = ({ history, ...rest }) => {
       position={"sticky"}
       top={"0"}
       zIndex={"10"}
+      py="10px"
+      px="10px"
       {...rest}
     >
       <Text
-        fontSize="xl"
+        fontSize="2xl"
         ml="8"
         fontFamily="monospace"
         fontWeight="bold"
-        mr="4"
+        mr="8"
         display={{ base: "none", md: "block" }}
       >
         {config.blog_name}
@@ -125,12 +123,20 @@ const MobileNav = ({ history, ...rest }) => {
         display={{ base: "none", md: "flex" }}
       >
         <Box _hover={{ transform: "scale(1.2)" }} cursor="pointer">
-          <Link href="https://github.com/dev-pieter">
+          <Link
+            href="https://github.com/dev-pieter"
+            target={"_blank"}
+            title="dev-pieter | GitHub"
+          >
             <FaGithub fontSize={"25px"} />
           </Link>
         </Box>
         <Box _hover={{ transform: "scale(1.2)" }} cursor="pointer">
-          <Link href="https://www.linkedin.com/in/pieternortje">
+          <Link
+            href="https://www.linkedin.com/in/pieternortje"
+            target={"_blank"}
+            title="Pieter Nortje | LinkedIn"
+          >
             <FaLinkedinIn fontSize={"25px"} />
           </Link>
         </Box>

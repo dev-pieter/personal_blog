@@ -21,12 +21,21 @@ const base_url = config.blog_api_url;
 
 function BlogComponent({ history }) {
   const [post, setPost] = useState();
+  const [offset, setOffset] = useState(0);
   const toast = useToast();
   const { id } = useParams();
 
   const { isLoading, isError, data } = useQuery("post_" + id, () =>
     fetchPostsById(id)
   );
+
+  useEffect(() => {
+    const onScroll = () => setOffset(window.pageYOffset);
+    // clean up code
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (data && !post && !data[0].markdown.content) {
@@ -62,17 +71,37 @@ function BlogComponent({ history }) {
           )}
         />
       )}
-      <HStack>
+      <HStack
+        position={"fixed"}
+        top={"90px"}
+        mb="10px"
+        opacity={offset > 100 ? "100" : "0"}
+      >
         <Box onClick={() => history.goBack()}>
-          <IconButton aria-label="Back" icon={<FaArrowLeft />} />
+          <IconButton
+            borderRadius={"full"}
+            aria-label="Back"
+            icon={<FaArrowLeft />}
+            bg={"white"}
+            boxShadow={"1px 1px 10px #888888"}
+            title="Go Back"
+          />
         </Box>
         <CopyToClipboard onCopy={handleCopy} text={window.location}>
-          <IconButton icon={<FaShareAlt />} />
+          <IconButton
+            borderRadius={"full"}
+            icon={<FaShareAlt />}
+            bg={offset > 0 && "white"}
+            boxShadow={"1px 1px 10px #888888"}
+            title="Copy Link to Clipboard"
+          />
         </CopyToClipboard>
       </HStack>
       <Center>
         <Stack width="100%">
-          <Heading textAlign="center">{post.heading}</Heading>
+          <Heading textAlign="left" fontSize="34px">
+            {post.heading}
+          </Heading>
           <br />
           <ReactMarkdown>{"****"}</ReactMarkdown>
           <Box
