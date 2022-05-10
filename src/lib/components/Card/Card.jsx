@@ -9,6 +9,7 @@ import {
   HStack,
   Image,
   Kbd,
+  Link,
 } from "@chakra-ui/react";
 import { FaEye } from "react-icons/fa";
 
@@ -16,52 +17,53 @@ export default function Card(props) {
   const IMAGE = props.url;
 
   return (
-    <Center cursor={"pointer"}>
-      <Box
-        role={"group"}
-        p={6}
-        maxW={"100%"}
-        minW={"100%"}
-        bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
-        rounded={"lg"}
-        pos={"relative"}
-        zIndex={1}
-        _hover={{
-          borderLeft: "5px solid orange",
-        }}
-      >
-        <SimpleGrid columns={[1, 1, 2]} spacing={"20px"} alignItems={"center"}>
-          <Center>
-            <Stack textAlign="left" spacing={6} h={"100%"}>
-              <Text
-                color={"gray.500"}
-                fontSize={"sm"}
-                textTransform={"uppercase"}
-              >
-                {props.author}
-              </Text>
+    <Center cursor={"pointer"} pb={6}>
+      <Stack>
+        <Box display={"flex"} gap={"30px"} alignItems={"center"}>
+          <Center width={{ base: "100%", md: "70%" }}>
+            <Stack textAlign="left" spacing={3} h={"100%"}>
               <Heading
                 fontFamily={"monospace"}
                 textAlign={"left"}
                 fontSize={"xl"}
-                maxW={"350px"}
                 fontWeight={500}
+                color={"black"}
               >
                 {props.heading}
               </Heading>
-              <HStack>
-                <Kbd>{props.date}</Kbd>
-                <Kbd>{props.readTime}</Kbd>
+              <Text
+                color={"gray.500"}
+                fontSize={"sm"}
+                textTransform={"capitalize"}
+              >
+                {props.author}
+              </Text>
+              <HStack fontSize={"xs"}>
+                <Box
+                  borderRadius={"4px"}
+                  padding={"3px 6px"}
+                  bg={"gray.600"}
+                  color={"white"}
+                >
+                  {props.date}
+                </Box>
+                <Box
+                  borderRadius={"4px"}
+                  padding={"3px 6px"}
+                  bg={"gray.600"}
+                  color={"white"}
+                >
+                  {props.readTime}
+                </Box>
               </HStack>
             </Stack>
           </Center>
-          <Center className="card-image">
+          <Center className="card-image" width={"30%"}>
             <Box
               rounded={"lg"}
               pos={"relative"}
-              width={"200px"}
-              height={"200px"}
+              width={"130px"}
+              height={"130px"}
               maxW={"100%"}
               _after={{
                 transition: "all .3s ease",
@@ -85,7 +87,7 @@ export default function Card(props) {
                 rounded={"lg"}
                 height={"100%"}
                 width={"100%"}
-                objectFit={"cover"}
+                objectFit={"contain"}
                 src={IMAGE}
               />
             </Box>
@@ -110,8 +112,16 @@ export default function Card(props) {
                     $199
                     </Text>
                 </Stack> */}
-        </SimpleGrid>
-      </Box>
+        </Box>
+        <Box textAlign={"justify"} color={"gray.500"} pt={3}>
+          {props.renderIntroBody && (
+            <>
+              {props.renderIntroBody()}
+              <Link textDecoration={"underline"}>Read more</Link>
+            </>
+          )}
+        </Box>
+      </Stack>
     </Center>
   );
 }

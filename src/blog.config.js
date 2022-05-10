@@ -5,7 +5,12 @@ export const config = {
   blog_api_url: "https://api.devpieter.co.za",
   blog_categories: [
     {
-      name: "daily dev",
+      name: "home",
+      icon: "https://images.unsplash.com/photo-1533279443086-d1c19a186416?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80",
+      path: "",
+    },
+    {
+      name: "daily-dev",
       icon: "https://images.unsplash.com/photo-1533279443086-d1c19a186416?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80",
       path: "daily",
     },

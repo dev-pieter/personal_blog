@@ -10,10 +10,10 @@ import {
 
 import { config } from "./blog.config";
 import Admin from "./lib/admin";
-import Blog from "./lib/blog/posts/home";
-import PostList from "./lib/blog/posts/post_list";
-import { BlogComponent } from "./lib/components";
-import Navbar from "./lib/dashboard/navbar";
+import Blog from "./lib/blog/content/home";
+import PostList from "./lib/blog/content/postList";
+import Post from "./lib/blog/content/post";
+import Navbar from "./lib/blog/navigation/Navbar";
 import { pageViews } from "./lib/seo/react-ga";
 import { useEffect } from "react";
 
@@ -39,6 +39,7 @@ function App() {
             return (
               <Route
                 exact
+                key={cat}
                 path={`/${cat.path}`}
                 render={() => {
                   pageViews(cat.path);
@@ -51,7 +52,7 @@ function App() {
             path="/posts/:id"
             render={() => {
               pageViews("post");
-              return <BlogComponent />;
+              return <Post />;
             }}
           />
           <Route>
