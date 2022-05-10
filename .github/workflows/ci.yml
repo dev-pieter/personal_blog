@@ -2,17 +2,16 @@ name: Continuous Integration
 
 on:
   pull_request:
-    branches: 
+    branches:
       - main
-      
+
   push:
     branches:
       - main
-      - 'feature/**'
+      - "feature/**"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,31 +20,31 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run test
-    - run: CI=false npm run build
-    
-    - name: Set up gh user
-      if: github.event_name != 'pull_request'
-      run: |
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run test --passWithNoTests
+      - run: CI=false npm run build
+
+      - name: Set up gh user
+        if: github.event_name != 'pull_request'
+        run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          
-    - name: Extract branch name
-      if: github.event_name != 'pull_request'
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-      
-    - name: Commit build
-      if: github.event_name != 'pull_request'
-      run: |
+
+      - name: Extract branch name
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Commit build
+        if: github.event_name != 'pull_request'
+        run: |
           git add .
           git commit -m "worker: Build commit"
           git push origin ${{ steps.extract_branch.outputs.branch }}
