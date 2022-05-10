@@ -1,4 +1,4 @@
-import { Box, Center, Heading, Stack } from "@chakra-ui/react";
+import { Box, Center, Heading, HStack, Kbd, Stack } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -12,6 +12,8 @@ import { calculateReadTime, dynamicSort } from "../../../utlis/utils";
 import HomePost from "./home.md";
 import { SyntaxHighlight } from "../../../components";
 import { Spinner } from "@chakra-ui/react";
+import { extractMetaData } from "../../../utlis/utils";
+import { fetchAllPosts } from "../../../../controllers/postController";
 
 const base_url = config.blog_api_url;
 
@@ -21,62 +23,60 @@ export default function Blog() {
     text: "",
   });
 
-  const postQuery = useQuery("posts_daily", () => {
-    return axios.get(base_url + "/get_daily").then((res) => {
-      setPost((prevState) => [
-        ...prevState,
-        ...res.data.sort(dynamicSort("-created_at")),
-      ]);
-      return res.data;
-    });
-  });
-
-  const postQuery2 = useQuery("posts_tutorial", () => {
-    return axios.get(base_url + "/get_tutorial").then((res) => {
-      setPost((prevState) => [
-        ...prevState,
-        ...res.data.sort(dynamicSort("-created_at")),
-      ]);
-      return res.data;
-    });
-  });
+  const { data, isError, isLoading } = useQuery("posts_all", fetchAllPosts);
 
   useEffect(() => {
     fetch(HomePost)
       .then((res) => res.text())
       .then((text) => {
-        setMarkdown({
-          text,
-        });
+        setMarkdown(parseMeta(text));
       });
   }, []);
+
+  useEffect(() => {
+    let posts = [];
+
+    if (data) {
+      data.forEach((item) => {
+        posts = [...posts, ...item];
+      });
+
+      setPost(posts.sort(dynamicSort("-created_at")));
+    }
+  }, [data]);
 
   return (
     <>
       <SEO title="Home" />
-      <Center maxWidth="100vw">
-        <Stack maxW="65%" className="blog-body">
-          <Center className="bg-change" minH="20vh" borderRadius="xl" p="2">
-            <Heading
-              fontSize="3xl"
-              textColor="white"
-              fontWeight="bold"
-              textAlign="center"
-            >
-              {config.blog_intro}
-            </Heading>
-          </Center>
-          <br />
+      <Center>
+        <Stack className="blog-body">
           <Center>
             <Stack spacing={"20px"}>
+              <p className="subHeading">About</p>
+              <Box
+                lineHeight="20px"
+                whiteSpace="break-spaces"
+                textAlign="justify"
+              >
+                {markdown.metaData && (
+                  <HStack style={{ paddingBottom: "28px" }}>
+                    {JSON.parse(markdown.metaData.tags).map((tag) => {
+                      return <Kbd key={tag}>{tag}</Kbd>;
+                    })}
+                  </HStack>
+                )}
+                <ReactMarkdown
+                  children={markdown.text}
+                  components={SyntaxHighlight}
+                />
+              </Box>
               <p className="subHeading">Latest Post</p>
-              {postQuery.isLoading ||
-                (postQuery2.isLoading && (
-                  <Center>
-                    <Spinner />
-                  </Center>
-                ))}
-              {postQuery.isError || (!post && <Center>No posts yet...</Center>)}
+              {isLoading && (
+                <Center>
+                  <Spinner />
+                </Center>
+              )}
+              {isError || (!post && <Center>No posts yet...</Center>)}
               {post.length && (
                 <Link to={`/posts/${post[0]._id}`}>
                   <Card
@@ -92,13 +92,6 @@ export default function Blog() {
                   ></Card>
                 </Link>
               )}
-              <p className="subHeading">About</p>
-              <Box lineHeight="20px" whiteSpace="break-spaces" maxW="100%">
-                <ReactMarkdown
-                  children={markdown.text}
-                  components={SyntaxHighlight}
-                />
-              </Box>
             </Stack>
           </Center>
           <Footer />
@@ -107,3 +100,12 @@ export default function Blog() {
     </>
   );
 }
+
+const parseMeta = (text) => {
+  const [rawMeta, metaData] = extractMetaData(text);
+
+  return {
+    text: text.replace(rawMeta[0], ""),
+    metaData: metaData,
+  };
+};

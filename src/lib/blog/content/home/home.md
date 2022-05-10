@@ -1,3 +1,9 @@
+---
+title: Home post
+category: [Home, Daily]
+tags: ["Coding", "Blog"]
+---
+
 I created this blog just to document, and share my findings throughout my Software Engineering career. One of the purposes of having this blog is actually to force myself to learn more, and explore new areas in software as a whole. So I hope you enjoy these articles and find them helpful.
 
 Some more about me:
