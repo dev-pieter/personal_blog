@@ -51,7 +51,7 @@ export default function Login(props) {
   };
 
   return (
-    <Center h={"95vh"}>
+    <Center>
       <Stack spacing={8} mx={"auto"} maxW={"md"} py={12} px={6} minW="40vw">
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>Sign in as admin</Heading>

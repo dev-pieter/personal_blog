@@ -94,7 +94,6 @@ export default function Blog() {
               )}
             </Stack>
           </Center>
-          <Footer />
         </Stack>
       </Center>
     </>
