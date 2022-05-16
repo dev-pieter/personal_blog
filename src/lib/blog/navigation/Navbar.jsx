@@ -25,8 +25,8 @@ function SimpleSidebar({ children, history }) {
         bg={"white"}
         zIndex="10"
         display={{ base: "block", md: "none" }}
-        pl="10px"
-        pt="10px"
+        borderBottom={"1px solid black"}
+        p={"10px"}
       >
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mr="4">
           {config.blog_name}
@@ -102,7 +102,10 @@ const MobileNav = ({ history, ...rest }) => {
         fontFamily="monospace"
         fontWeight="bold"
         mr="8"
+        p={"4px 10px"}
         display={{ base: "none", md: "block" }}
+        border={"1px solid black"}
+        boxShadow={"4px 4px lightGrey"}
       >
         {config.blog_name}
       </Text>

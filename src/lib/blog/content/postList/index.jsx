@@ -68,15 +68,21 @@ function PostList(props) {
       <SEO title="Posts" description={`Blog posts on ${props.cat}`} />
       <SimpleGrid columns={[1, 1, 1]} gap={"20px"}>
         <HStack>
-          <InputGroup width={"70%"}>
+          <InputGroup width={"70%"} border={"1px solid black"}>
             <InputLeftElement children={<SearchIcon />} />
-            <Input variant="Outline" placeholder="Search" onChange={onSearch} />
+            <Input
+              variant="Outline"
+              placeholder="Search"
+              onChange={onSearch}
+              borderRadius={0}
+            />
           </InputGroup>
-          <InputGroup width={"30%"} bg="white">
+          <InputGroup width={"30%"} bg="white" border={"1px solid black"}>
             <Select
+              borderRadius={0}
               border={"none"}
               onChange={(e) => setOrder(e.target.value)}
-              variant="outline"
+              variant="Outline"
             >
               {sorts.map((item) => (
                 <option key={item.value} value={item.value}>

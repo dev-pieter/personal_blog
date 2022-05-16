@@ -1,5 +1,5 @@
 import { Center, Heading, HStack, Stack } from "@chakra-ui/layout";
-import { Box, IconButton, Kbd } from "@chakra-ui/react";
+import { Box, IconButton, Kbd, Image } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -75,35 +75,41 @@ function BlogComponent({ history }) {
         position={"fixed"}
         top={"90px"}
         mb="10px"
+        ml={{ base: "10px", md: "-120px" }}
+        zIndex={"100"}
         opacity={offset > 100 ? "100" : "0"}
       >
         <Box onClick={() => history.goBack()}>
           <IconButton
-            borderRadius={"full"}
+            borderRadius={"0"}
+            border={"1px solid black"}
             aria-label="Back"
             icon={<FaArrowLeft />}
             bg={"white"}
-            boxShadow={"1px 1px 10px #888888"}
             title="Go Back"
+            _hover={{ boxShadow: "4px 4px lightGrey" }}
           />
         </Box>
         <CopyToClipboard onCopy={handleCopy} text={window.location}>
           <IconButton
-            borderRadius={"full"}
+            borderRadius={"0"}
+            border={"1px solid black"}
             icon={<FaShareAlt />}
             bg={offset > 0 && "white"}
-            boxShadow={"1px 1px 10px #888888"}
             title="Copy Link to Clipboard"
+            _hover={{ boxShadow: "4px 4px lightGrey" }}
           />
         </CopyToClipboard>
       </HStack>
       <Center>
-        <Stack width="100%">
-          <Heading textAlign="left" fontSize="34px">
+        <Stack width="100%" bg={"white"} border={"1px solid black"} p={"20px"}>
+          <Heading textAlign="left" fontSize="34px" marginBottom={"10px"}>
             {post.heading}
           </Heading>
+          <Center border={"1px solid black"} p={"10px"} marginBottom={"10px"}>
+            <Image src={post.img_url} w={"150px"}></Image>
+          </Center>
           <br />
-          <ReactMarkdown>{"****"}</ReactMarkdown>
           <Box
             lineHeight="20px"
             whiteSpace="break-spaces"

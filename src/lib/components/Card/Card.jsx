@@ -15,7 +15,15 @@ export default function Card(props) {
 
   return (
     <Center pb={6}>
-      <Stack>
+      <Stack
+        bg={"white"}
+        padding={"20px"}
+        sx={{ border: "1px solid grey" }}
+        _hover={{
+          boxShadow: "6px 6px lightGrey",
+        }}
+        transition={"box-shadow 0.1s"}
+      >
         <Box display={"flex"} gap={"30px"} alignItems={"center"}>
           <Center width={{ base: "100%", md: "70%" }}>
             <Stack textAlign="left" spacing={3} h={"100%"}>
@@ -39,20 +47,10 @@ export default function Card(props) {
                 {props.author}
               </Text>
               <HStack fontSize={"xs"}>
-                <Box
-                  borderRadius={"4px"}
-                  padding={"3px 6px"}
-                  bg={"gray.600"}
-                  color={"white"}
-                >
+                <Box padding={"3px 6px"} bg={"black"} color={"white"}>
                   {props.date}
                 </Box>
-                <Box
-                  borderRadius={"4px"}
-                  padding={"3px 6px"}
-                  bg={"gray.600"}
-                  color={"white"}
-                >
+                <Box padding={"3px 6px"} bg={"black"} color={"white"}>
                   {props.readTime}
                 </Box>
               </HStack>
@@ -65,23 +63,6 @@ export default function Card(props) {
               width={"130px"}
               height={"130px"}
               maxW={"100%"}
-              _after={{
-                transition: "all .3s ease",
-                content: '""',
-                w: "full",
-                h: "full",
-                pos: "absolute",
-                top: 5,
-                left: 0,
-                backgroundImage: `url(${IMAGE})`,
-                filter: "blur(15px)",
-                zIndex: -1,
-              }}
-              _groupHover={{
-                _after: {
-                  filter: "blur(20px)",
-                },
-              }}
             >
               <Image
                 rounded={"lg"}
@@ -103,7 +84,7 @@ export default function Card(props) {
         </Box>
         <Box textAlign={"justify"} color={"gray.500"}>
           {props.renderIntroBody && (
-            <>
+            <Box pt={"10px"}>
               {props.renderIntroBody()}
               <Text
                 textDecoration={"underline"}
@@ -116,9 +97,8 @@ export default function Card(props) {
               >
                 Read more
               </Text>
-            </>
+            </Box>
           )}
-          <ReactMarkdown>***</ReactMarkdown>
         </Box>
       </Stack>
     </Center>

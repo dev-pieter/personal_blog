@@ -28,7 +28,7 @@ export default function Blog() {
     fetch(HomePost)
       .then((res) => res.text())
       .then((text) => {
-        setMarkdown(parseMeta(text));
+        setMarkdown(text);
         setLoading(false);
       });
   }, []);
@@ -60,11 +60,13 @@ export default function Blog() {
         <Stack className="blog-body">
           <Center>
             <Stack spacing={"20px"}>
-              <p className="subHeading">About</p>
               <Box
                 lineHeight="20px"
                 whiteSpace="break-spaces"
                 textAlign="justify"
+                bg={"white"}
+                border={"1px solid black"}
+                p={"20px"}
               >
                 {markdown.metaData && (
                   <HStack style={{ paddingBottom: "28px" }}>
@@ -74,7 +76,7 @@ export default function Blog() {
                   </HStack>
                 )}
                 <ReactMarkdown
-                  children={markdown.text}
+                  children={markdown}
                   components={SyntaxHighlight}
                 />
               </Box>
@@ -107,12 +109,3 @@ export default function Blog() {
     </>
   );
 }
-
-const parseMeta = (text) => {
-  const [rawMeta, metaData] = extractMetaData(text);
-
-  return {
-    text: text.replace(rawMeta[0], ""),
-    metaData: metaData,
-  };
-};
