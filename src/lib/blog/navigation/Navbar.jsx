@@ -140,6 +140,7 @@ const MobileNav = ({ history, setDarkMode, ...rest }) => {
           fontSize={"25px"}
           onClick={() => addDarkModeToStorage()}
           cursor={"pointer"}
+          title={"Toggle Dark Mode"}
         ></FaSun>
         <Box _hover={{ transform: "scale(1.2)" }} cursor="pointer">
           <Link

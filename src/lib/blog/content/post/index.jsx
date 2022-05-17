@@ -125,7 +125,8 @@ function BlogComponent({ history }) {
             {post.heading}
           </Heading>
           <Center
-            border={`2px solid ${darkMode ? "white" : "black"}`}
+            border={`6px solid ${darkMode ? "white" : "black"}`}
+            className={"bg-change"}
             p={"10px"}
             marginBottom={"10px"}
           >
