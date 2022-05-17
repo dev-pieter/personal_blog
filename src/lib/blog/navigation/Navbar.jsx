@@ -70,6 +70,12 @@ const NavItem = ({ icon, path, children, active, ...rest }) => {
 
 const MobileNav = ({ history, setDarkMode, ...rest }) => {
   const darkMode = useContext(ColorContext);
+
+  const addDarkModeToStorage = () => {
+    localStorage.setItem("dark-mode", darkMode ? "false" : "true");
+    setDarkMode((prevMode) => !prevMode);
+  };
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const loadIndex = (path) => {
@@ -132,7 +138,7 @@ const MobileNav = ({ history, setDarkMode, ...rest }) => {
       >
         <FaSun
           fontSize={"25px"}
-          onClick={() => setDarkMode((prevMode) => !prevMode)}
+          onClick={() => addDarkModeToStorage()}
           cursor={"pointer"}
         ></FaSun>
         <Box _hover={{ transform: "scale(1.2)" }} cursor="pointer">
