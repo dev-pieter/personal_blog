@@ -1,19 +1,23 @@
-import { Box, Center, Heading, HStack, Kbd, Stack } from "@chakra-ui/react";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import {
+  Box,
+  Center,
+  HStack,
+  Kbd,
+  Spinner,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import { useContext, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 
-import { config } from "../../../../blog.config";
-import { Card, Footer } from "../../../components";
+import { fetchAllPosts } from "../../../../controllers/postController";
+import { ColorContext } from "../../../../providers/ContextProvider";
+import { Card, SyntaxHighlight } from "../../../components";
 import SEO from "../../../seo/seo";
 import { calculateReadTime, dynamicSort } from "../../../utlis/utils";
 import HomePost from "./home.md";
-import { SyntaxHighlight } from "../../../components";
-import { Spinner } from "@chakra-ui/react";
-import { extractMetaData } from "../../../utlis/utils";
-import { fetchAllPosts } from "../../../../controllers/postController";
 
 export default function Blog() {
   const [post, setPost] = useState([]);
@@ -23,6 +27,8 @@ export default function Blog() {
   });
 
   const { data, isError, isLoading } = useQuery("posts_all", fetchAllPosts);
+
+  const darkMode = useContext(ColorContext);
 
   useEffect(() => {
     fetch(HomePost)
@@ -48,7 +54,7 @@ export default function Blog() {
   if (loading || isLoading) {
     return (
       <Center>
-        <Spinner />
+        <Spinner color={darkMode ? "white" : "black"} />
       </Center>
     );
   }
@@ -59,13 +65,13 @@ export default function Blog() {
       <Center>
         <Stack className="blog-body">
           <Center>
-            <Stack spacing={"20px"}>
+            <Stack spacing={"20px"} color={darkMode ? "white" : "black"}>
               <Box
                 lineHeight="20px"
                 whiteSpace="break-spaces"
                 textAlign="justify"
-                bg={"white"}
-                border={"1px solid black"}
+                bg={darkMode ? "none" : "white"}
+                border={`1px solid ${darkMode ? "white" : "black"}`}
                 p={"20px"}
               >
                 {markdown.metaData && (
@@ -80,7 +86,7 @@ export default function Blog() {
                   components={SyntaxHighlight}
                 />
               </Box>
-              <p className="subHeading">Latest Post</p>
+              <Text className="subHeading">Latest Post</Text>
               {isLoading && (
                 <Center>
                   <Spinner />

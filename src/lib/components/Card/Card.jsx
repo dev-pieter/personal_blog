@@ -7,20 +7,22 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
-import ReactMarkdown from "react-markdown";
+import React, { useContext } from "react";
+
+import { ColorContext } from "../../../providers/ContextProvider";
 
 export default function Card(props) {
+  const darkMode = useContext(ColorContext);
   const IMAGE = props.url;
 
   return (
     <Center pb={6}>
       <Stack
-        bg={"white"}
+        bg={darkMode ? "none" : "white"}
         padding={"20px"}
-        sx={{ border: "1px solid grey" }}
+        sx={{ border: `1px solid ${darkMode ? "white" : "black"}` }}
         _hover={{
-          boxShadow: "6px 6px lightGrey",
+          boxShadow: `6px 6px ${darkMode ? "white" : "lightGrey"}`,
         }}
         transition={"box-shadow 0.1s"}
       >
@@ -34,13 +36,13 @@ export default function Card(props) {
                 textAlign={"left"}
                 fontSize={"2xl"}
                 fontWeight={500}
-                color={"black"}
+                color={darkMode ? "white" : "black"}
                 _hover={{ textDecoration: "underline" }}
               >
                 {props.heading}
               </Heading>
               <Text
-                color={"gray.500"}
+                color={darkMode ? "gray.200" : "gray.500"}
                 fontSize={"sm"}
                 textTransform={"capitalize"}
               >
@@ -82,7 +84,7 @@ export default function Card(props) {
                     </Text>
                 </Stack> */}
         </Box>
-        <Box textAlign={"justify"} color={"gray.500"}>
+        <Box textAlign={"justify"} color={darkMode ? "gray.200" : "gray.500"}>
           {props.renderIntroBody && (
             <Box pt={"10px"}>
               {props.renderIntroBody()}
