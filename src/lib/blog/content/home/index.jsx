@@ -54,7 +54,7 @@ export default function Blog() {
   if (loading || isLoading) {
     return (
       <Center>
-        <Spinner color={darkMode ? "white" : black} />
+        <Spinner color={darkMode ? "white" : "black"} />
       </Center>
     );
   }

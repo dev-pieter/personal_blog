@@ -61,7 +61,7 @@ function BlogComponent({ history }) {
   if (isLoading || !post) {
     return (
       <Center>
-        <Spinner color={darkMode ? "white" : black} />
+        <Spinner color={darkMode ? "white" : "black"} />
       </Center>
     );
   }

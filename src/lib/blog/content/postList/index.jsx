@@ -56,13 +56,15 @@ function PostList(props) {
   if (isLoading) {
     return (
       <Center>
-        <Spinner color={darkMode ? "white" : black} />
+        <Spinner color={darkMode ? "white" : "black"} />
       </Center>
     );
   }
 
   if (isError || posts.length === 0) {
-    return <Center color={darkMode ? "white" : black}>No posts yet...</Center>;
+    return (
+      <Center color={darkMode ? "white" : "black"}>No posts yet...</Center>
+    );
   }
 
   return (
