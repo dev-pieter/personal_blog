@@ -9,7 +9,7 @@ import {
   SimpleGrid,
   Spinner,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
@@ -22,6 +22,7 @@ import { Card } from "../../../components";
 import SEO from "../../../seo/seo";
 import { calculateReadTime, dynamicSort } from "../../../utlis/utils";
 import { withRouter } from "react-router-dom";
+import { ColorContext } from "../../../../providers/ContextProvider";
 
 const sorts = [
   { value: "-created_at", name: "↑ Post date" },
@@ -29,6 +30,7 @@ const sorts = [
 ];
 
 function PostList(props) {
+  const darkMode = useContext(ColorContext);
   const [posts, setPosts] = useState([]);
   const [order, setOrder] = useState(sorts[1].value);
 
@@ -54,13 +56,13 @@ function PostList(props) {
   if (isLoading) {
     return (
       <Center>
-        <Spinner />
+        <Spinner color={darkMode ? "white" : black} />
       </Center>
     );
   }
 
   if (isError || posts.length === 0) {
-    return <Center>No posts yet...</Center>;
+    return <Center color={darkMode ? "white" : black}>No posts yet...</Center>;
   }
 
   return (
@@ -68,21 +70,31 @@ function PostList(props) {
       <SEO title="Posts" description={`Blog posts on ${props.cat}`} />
       <SimpleGrid columns={[1, 1, 1]} gap={"20px"}>
         <HStack>
-          <InputGroup width={"70%"} border={"1px solid black"}>
+          <InputGroup
+            width={"70%"}
+            border={`1px solid ${darkMode ? "white" : "black"}`}
+            color={darkMode ? "white" : "black"}
+          >
             <InputLeftElement children={<SearchIcon />} />
             <Input
               variant="Outline"
               placeholder="Search"
               onChange={onSearch}
               borderRadius={0}
+              bg={darkMode ? "none" : "white"}
             />
           </InputGroup>
-          <InputGroup width={"30%"} bg="white" border={"1px solid black"}>
+          <InputGroup
+            width={"30%"}
+            border={`1px solid ${darkMode ? "white" : "black"}`}
+            color={darkMode ? "white" : "black"}
+          >
             <Select
               borderRadius={0}
               border={"none"}
               onChange={(e) => setOrder(e.target.value)}
               variant="Outline"
+              bg={darkMode ? "none" : "white"}
             >
               {sorts.map((item) => (
                 <option key={item.value} value={item.value}>

@@ -1,25 +1,27 @@
 import { Center, Heading, HStack, Stack } from "@chakra-ui/layout";
-import { Box, IconButton, Kbd, Image } from "@chakra-ui/react";
+import { Box, IconButton, Image, Kbd, Spinner } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { FastCommentsCommentWidget } from "fastcomments-react";
+import React, { useContext, useEffect, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FaArrowLeft, FaShareAlt } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
-import { FastCommentsCommentWidget } from "fastcomments-react";
-import { extractMetaData, hasKey } from "../../../utlis/utils";
-import { withRouter } from "react-router-dom";
+import { useParams, withRouter } from "react-router-dom";
 
-import { Footer, SyntaxHighlight } from "../../../components";
 import { config } from "../../../../blog.config";
-import SEO from "../../../seo/seo";
 import { fetchPostsById } from "../../../../controllers/postController";
+import { ColorContext } from "../../../../providers/ContextProvider";
+import { SyntaxHighlight } from "../../../components";
+import SEO from "../../../seo/seo";
+import { extractMetaData, hasKey } from "../../../utlis/utils";
 
 const base_url = config.blog_api_url;
 
 function BlogComponent({ history }) {
+  const darkMode = useContext(ColorContext);
+
   const [post, setPost] = useState();
   const [offset, setOffset] = useState(0);
   const toast = useToast();
@@ -57,7 +59,11 @@ function BlogComponent({ history }) {
   };
 
   if (isLoading || !post) {
-    return <Center>Loading...</Center>;
+    return (
+      <Center>
+        <Spinner color={darkMode ? "white" : black} />
+      </Center>
+    );
   }
 
   return (
@@ -82,10 +88,11 @@ function BlogComponent({ history }) {
         <Box onClick={() => history.goBack()}>
           <IconButton
             borderRadius={"0"}
-            border={"1px solid black"}
+            border={`1px solid ${darkMode ? "white" : "black"}`}
             aria-label="Back"
             icon={<FaArrowLeft />}
-            bg={"white"}
+            bg={darkMode ? "none" : "white"}
+            color={darkMode ? "white" : "black"}
             title="Go Back"
             _hover={{ boxShadow: "4px 4px lightGrey" }}
           />
@@ -93,20 +100,35 @@ function BlogComponent({ history }) {
         <CopyToClipboard onCopy={handleCopy} text={window.location}>
           <IconButton
             borderRadius={"0"}
-            border={"1px solid black"}
+            border={`1px solid ${darkMode ? "white" : "black"}`}
             icon={<FaShareAlt />}
-            bg={offset > 0 && "white"}
+            bg={darkMode ? "none" : "white"}
+            color={darkMode ? "white" : "black"}
             title="Copy Link to Clipboard"
             _hover={{ boxShadow: "4px 4px lightGrey" }}
           />
         </CopyToClipboard>
       </HStack>
       <Center>
-        <Stack width="100%" bg={"white"} border={"1px solid black"} p={"20px"}>
-          <Heading textAlign="left" fontSize="34px" marginBottom={"10px"}>
+        <Stack
+          width="100%"
+          bg={darkMode ? "none" : "white"}
+          border={`1px solid ${darkMode ? "white" : "black"}`}
+          p={"20px"}
+        >
+          <Heading
+            color={darkMode ? "white" : "black"}
+            textAlign="left"
+            fontSize="34px"
+            marginBottom={"10px"}
+          >
             {post.heading}
           </Heading>
-          <Center border={"1px solid black"} p={"10px"} marginBottom={"10px"}>
+          <Center
+            border={`2px solid ${darkMode ? "white" : "black"}`}
+            p={"10px"}
+            marginBottom={"10px"}
+          >
             <Image src={post.img_url} w={"150px"}></Image>
           </Center>
           <br />
@@ -115,6 +137,7 @@ function BlogComponent({ history }) {
             whiteSpace="break-spaces"
             textAlign="justify"
             paddingBottom="28px"
+            color={darkMode ? "white" : "black"}
           >
             {hasKey(post.markdown.metaData, "tags") && (
               <HStack style={{ paddingBottom: "28px", paddingTop: "28px" }}>
@@ -129,6 +152,7 @@ function BlogComponent({ history }) {
             />
           </Box>
           <FastCommentsCommentWidget
+            darkMode={darkMode}
             tenantId={"_U40v-B5ayp"}
             urlId={post.heading}
           />

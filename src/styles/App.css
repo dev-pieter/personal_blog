@@ -35,10 +35,13 @@ kbd {
   padding: 3px 2px;
 }
 
+body {
+  transition: color 1s;
+}
+
 .subHeading {
   font-size: 20px;
   font-weight: bold;
-  color: rgb(70, 70, 70);
 }
 
 .example::-webkit-scrollbar {
