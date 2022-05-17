@@ -50,19 +50,19 @@ body {
 
 @keyframes bgcolor {
   0% {
-    background-color: #fd8844f5;
+    border-color: #0037DA;
   }
   30% {
-    background-color: #3f5efb85;
+    border-color: #3A96DD;
   }
   60% {
-    background-color: #fc46469a;
+    border-color: #13A10E;
   }
   90% {
-    background-color: #3f5efb85;
+    border-color: #881798;
   }
   100% {
-    background-color: #fc4646de;
+    border-color: #C50F1F;
   }
 }
 
