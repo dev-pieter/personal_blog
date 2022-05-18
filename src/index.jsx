@@ -11,14 +11,30 @@ import theme from "./styles/theme";
 
 const queryClient = new QueryClient();
 
-ReactDOM.hydrate(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <App />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </ChakraProvider>
-    </QueryClientProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrate(
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider theme={theme}>
+          <App />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ChakraProvider>
+      </QueryClientProvider>
+    </React.StrictMode>,
+    rootElement
+  );
+} else {
+  ReactDOM.render(
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider theme={theme}>
+          <App />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ChakraProvider>
+      </QueryClientProvider>
+    </React.StrictMode>,
+    rootElement
+  );
+}
