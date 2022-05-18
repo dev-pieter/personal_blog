@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 
-function SEO({ description, lang, meta, title }) {
-  const metaDescription = description || "Pieter Nortje | Developer Blog"
+function SEO({ description, lang, meta, title, image }) {
+  const metaDescription = description || "Pieter Nortje | Developer Blog";
 
   return (
     <Helmet
@@ -30,8 +30,16 @@ function SEO({ description, lang, meta, title }) {
           content: `website`,
         },
         {
+          property: `og:image`,
+          content: image,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
+        },
+        {
+          name: `twitter:image`,
+          content: image,
         },
         {
           name: `twitter:creator`,
@@ -47,20 +55,22 @@ function SEO({ description, lang, meta, title }) {
         },
       ].concat(meta)}
     />
-  )
+  );
 }
 
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
-}
+  image: ``,
+};
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-}
+  image: PropTypes.string,
+};
 
-export default SEO
+export default SEO;

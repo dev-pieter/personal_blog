@@ -11,7 +11,7 @@ import theme from "./styles/theme";
 
 const queryClient = new QueryClient();
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>

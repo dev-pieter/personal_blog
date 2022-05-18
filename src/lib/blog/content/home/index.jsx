@@ -61,7 +61,11 @@ export default function Blog() {
 
   return (
     <>
-      <SEO title="Home" />
+      <SEO
+        title="Home"
+        description={markdown.slice(0, markdown.indexOf(`\n`))}
+        image="https://blog.devpieter.co.za/site_image.png"
+      />
       <Center>
         <Stack className="blog-body">
           <Center>
