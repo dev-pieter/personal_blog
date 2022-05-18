@@ -69,7 +69,11 @@ function PostList(props) {
 
   return (
     <Center>
-      <SEO title="Posts" description={`Blog posts on ${props.cat}`} />
+      <SEO
+        title="Posts"
+        description={`Are you lost? Here you'll find some ${props.cat} posts to fill your cup with prime content.`}
+        image={posts[0].img_url ?? ""}
+      />
       <SimpleGrid columns={[1, 1, 1]} gap={"20px"}>
         <HStack>
           <InputGroup

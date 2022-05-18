@@ -73,8 +73,9 @@ function BlogComponent({ history }) {
           title={post.heading}
           description={post.markdown.content.slice(
             0,
-            post.markdown.content.indexOf(".")
+            post.markdown.content.indexOf(`\n`)
           )}
+          image={post.img_url}
         />
       )}
       <HStack
