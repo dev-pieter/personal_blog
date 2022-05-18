@@ -24,15 +24,15 @@ function SimpleSidebar({ children, history, setDarkMode }) {
   return (
     <Box minH="100vh" bg={darkMode ? "gray.800" : "gray.100"}>
       <Center
-        bg={"white"}
-        zIndex="10"
+        bg={darkMode ? "gray.900" : "white"}
+        textAlign="center"
+        color={darkMode ? "white" : "black"}
+        pt={"4"}
+        pb={"4"}
         display={{ base: "block", md: "none" }}
-        borderBottom={"1px solid black"}
-        p={"10px"}
+        margin="auto"
       >
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mr="4">
-          {config.blog_name}
-        </Text>
+        <BlogLogo />
       </Center>
       <MobileNav history={history} setDarkMode={setDarkMode} />
       <Box p="4" width={{ base: "100%", md: "796px" }} margin="auto">
@@ -42,6 +42,25 @@ function SimpleSidebar({ children, history, setDarkMode }) {
     </Box>
   );
 }
+
+const BlogLogo = ({ display }) => {
+  const darkMode = useContext(ColorContext);
+  return (
+    <Text
+      fontSize="2xl"
+      ml="8"
+      fontFamily="monospace"
+      fontWeight="bold"
+      mr="8"
+      p={"4px 10px"}
+      display={display}
+      border={`1px solid ${darkMode ? "white" : "black"}`}
+      boxShadow={`4px 4px ${darkMode ? "white" : "lightGrey"}`}
+    >
+      {config.blog_name}
+    </Text>
+  );
+};
 
 const NavItem = ({ icon, path, children, active, ...rest }) => {
   const darkMode = useContext(ColorContext);
@@ -107,19 +126,7 @@ const MobileNav = ({ history, setDarkMode, ...rest }) => {
       px="10px"
       {...rest}
     >
-      <Text
-        fontSize="2xl"
-        ml="8"
-        fontFamily="monospace"
-        fontWeight="bold"
-        mr="8"
-        p={"4px 10px"}
-        display={{ base: "none", md: "block" }}
-        border={`1px solid ${darkMode ? "white" : "black"}`}
-        boxShadow={`4px 4px ${darkMode ? "white" : "lightGrey"}`}
-      >
-        {config.blog_name}
-      </Text>
+      <BlogLogo display={{ base: "none", md: "block" }} />
       {LinkItems.map((link, idx) => (
         <NavItem
           key={link.name}

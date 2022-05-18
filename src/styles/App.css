@@ -39,6 +39,10 @@ body {
   transition: color 1s;
 }
 
+p, img {
+  margin: auto;
+}
+
 .subHeading {
   font-size: 20px;
   font-weight: bold;
