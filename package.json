@@ -36,7 +36,8 @@
         "test": "jest",
         "eject": "react-scripts eject",
         "precommit": "npm run build && git add .",
-        "commit": "git commit -m 'production build'"
+        "commit": "git commit -m 'production build'",
+        "server": "node server/index.js"
     },
     "browserslist": {
         "production": [
