@@ -22,8 +22,14 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
+    const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const dm = localStorage.getItem("dark-mode");
-    setDarkMode(dm === "true" ? true : false);
+
+    if (dm) {
+      setDarkMode(dm === "true" ? true : false);
+    } else {
+      setDarkMode(dark);
+    }
 
     ReactGA.initialize("UA-227468019-1");
   }, []);
