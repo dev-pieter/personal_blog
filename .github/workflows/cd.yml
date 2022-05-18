@@ -15,8 +15,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
-        
+          node-version: "14.x"
+
       - name: Restart server application
-        run: pm2 stop blog
-        run: node server/index.js
+        run: |
+          pm2 stop blog 
+          pm2 start server/index.js --name blog
