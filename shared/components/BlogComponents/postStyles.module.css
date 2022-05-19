@@ -1,0 +1,14 @@
+.blogBody img {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.blogBody h1 {
+    font-size: x-large;
+}
+
+.blogBody ul {
+    padding: 0px 30px;
+    line-height: 1.1em;
+}
