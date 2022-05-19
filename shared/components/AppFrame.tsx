@@ -13,7 +13,7 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
   return (
     <Stack minH="100vh" pb="28px" spacing={8} bg={"gray.800"}>
       <HStack
-        height={"100px"}
+        height={"80px"}
         borderBottom="1px solid white"
         position={"sticky"}
         top={"0"}
@@ -48,7 +48,11 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
         ))}
       </HStack>
       <Center>
-        <Box width={"768px"} p={{ base: "3", md: "0" }} color="white">
+        <Box
+          width={{ base: "100%", md: "768px" }}
+          p={{ base: "3", md: "0" }}
+          color="white"
+        >
           {children}
         </Box>
       </Center>

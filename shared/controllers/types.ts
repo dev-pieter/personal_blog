@@ -31,6 +31,10 @@ export interface API {
   getAllSlugs: () => Array<string>;
   getAllArticles: (fields: string[]) => Array<BlogArticleType>;
   getArticlesByTag: (tag: string, fields: string[]) => Array<BlogArticleType>;
+  getArticlesByCategory: (
+    category: string,
+    fields: string[]
+  ) => Array<BlogArticleType>;
   getArticleBySlug: (slug: string, fields: string[]) => BlogArticleType;
   getAllTags: () => Array<string>;
 }

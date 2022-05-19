@@ -15,12 +15,12 @@ export const config = {
     },
     {
       name: "daily-dev",
-      path: "posts/daily-dev",
+      path: "posts?category=daily-dev",
       icon: <FiCode />,
     },
     {
       name: "tutorials",
-      path: "posts/tutorials",
+      path: "posts?category=tutorials",
       icon: <FaGraduationCap />,
     },
   ],

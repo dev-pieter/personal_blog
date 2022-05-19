@@ -58,6 +58,16 @@ function getArticlesByTag(
   });
 }
 
+function getArticlesByCategory(
+  category: string,
+  fields: string[] = []
+): Array<BlogArticleType> {
+  return getAllArticles(fields.concat(["category"])).filter((article) => {
+    const cat = article.category ?? "";
+    return cat === category;
+  });
+}
+
 function getAllTags(): Array<string> {
   const articles = getAllArticles(["tags"]);
   const allTags = new Set<string>();
@@ -75,4 +85,5 @@ export const api: API = {
   getArticlesByTag,
   getArticleBySlug,
   getAllTags,
+  getArticlesByCategory,
 };
