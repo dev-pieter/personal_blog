@@ -21,7 +21,12 @@ jobs:
         run: npm ci
 
       - name: Build solution
-        run: npm run build
+        run: |
+          npm run build &
+          while kill -0 $! > /dev/null 2>&1; do
+            free -m
+            sleep <interval>
+          done
 
       - name: Restart server application
         run: |
