@@ -29,21 +29,21 @@ jobs:
       - run: npm ci
       - run: CI=false npm run build
 
-      - name: Set up gh user
-        if: github.event_name != 'pull_request'
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+      # - name: Set up gh user
+      #   if: github.event_name != 'pull_request'
+      #   run: |
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "<>"
 
-      - name: Extract branch name
-        if: github.event_name != 'pull_request'
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
+      # - name: Extract branch name
+      #   if: github.event_name != 'pull_request'
+      #   shell: bash
+      #   run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      #   id: extract_branch
 
-      - name: Commit build
-        if: github.event_name != 'pull_request'
-        run: |
-          git add .
-          git commit -m "worker: Build commit"
-          git push origin ${{ steps.extract_branch.outputs.branch }}
+      # - name: Commit build
+      #   if: github.event_name != 'pull_request'
+      #   run: |
+      #     git add .
+      #     git commit -m "worker: Build commit"
+      #     git push origin ${{ steps.extract_branch.outputs.branch }}
