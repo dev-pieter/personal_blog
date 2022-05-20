@@ -20,6 +20,12 @@ export interface Props {
 
 const AppFrame: FunctionComponent<Props> = ({ children }) => {
   const router = useRouter();
+  const [activeUrl, setActiveUrl] = useState<string>("");
+
+  useEffect(() => {
+    setActiveUrl(router.asPath);
+  }, [router.asPath]);
+
   return (
     <>
       <Loading />
@@ -50,8 +56,13 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
               <HStack
                 key={cat.name}
                 pr={4}
-                onClick={() => router.push(`/${cat.path}`)}
+                onClick={() => router.push(`${cat.path}`)}
                 cursor={"pointer"}
+                sx={
+                  activeUrl === cat.path
+                    ? { color: "orange", textDecoration: "underline" }
+                    : undefined
+                }
                 _hover={{ color: "orange", textDecoration: "underline" }}
                 color="white"
               >
@@ -101,8 +112,11 @@ const Loading: FunctionComponent<any> = (): null | JSX.Element => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const handleStart = (url: string) =>
-      url !== router.asPath && setLoading(true);
+    const handleStart = (url: string) => {
+      if (url !== router.asPath && !loading) {
+        setLoading(true);
+      }
+    };
     const handleComplete = (url: string) =>
       url === router.asPath && setLoading(false);
 
@@ -110,12 +124,8 @@ const Loading: FunctionComponent<any> = (): null | JSX.Element => {
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
 
-    return () => {
-      router.events.off("routeChangeStart", handleStart);
-      router.events.off("routeChangeComplete", handleComplete);
-      router.events.off("routeChangeError", handleComplete);
-    };
-  }, [router.asPath, router.events]);
+    //
+  }, [loading, router.asPath, router.events]);
 
   if (loading) {
     return (

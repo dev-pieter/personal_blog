@@ -20,17 +20,17 @@ export const config = {
   blog_categories: [
     {
       name: "home",
-      path: "",
+      path: "/",
       icon: <AiFillHome />,
     },
     {
       name: "daily-dev",
-      path: "posts?category=daily-dev",
+      path: "/posts?category=daily-dev",
       icon: <FiCode />,
     },
     {
       name: "tutorials",
-      path: "posts?category=tutorials",
+      path: "/posts?category=tutorials",
       icon: <FaGraduationCap />,
     },
   ],
