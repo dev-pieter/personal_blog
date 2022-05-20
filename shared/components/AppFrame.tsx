@@ -85,6 +85,11 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
             {children}
           </Box>
         </Center>
+        <Center>
+          <Text color={"gray.400"}>
+            © {new Date().getFullYear()} - Pieter Nortje ✌️
+          </Text>
+        </Center>
       </Stack>
     </>
   );
