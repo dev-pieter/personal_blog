@@ -36,4 +36,4 @@ jobs:
       - name: Restart server application
         run: |
           pm2 delete blog || true 
-          pm2 start npm --name "blog" -- start
+          pm2 start yarn --name "blog" -- start
