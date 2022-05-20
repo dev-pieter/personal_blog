@@ -60,14 +60,14 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
               </HStack>
             ))}
           </HStack>
-          <HStack color="white" pr="20px" gap="5px">
+          <HStack color="white" pr="20px" gap="4px">
             {config.author_socials.map((item) => (
               <HStack
                 key={item.link}
                 cursor={"pointer"}
                 _hover={{ color: "orange", textDecoration: "underline" }}
                 color="white"
-                fontSize={"25px"}
+                fontSize={{ base: "20px", md: "25px" }}
               >
                 <Link href={item.link}>
                   <Text>{item.icon}</Text>

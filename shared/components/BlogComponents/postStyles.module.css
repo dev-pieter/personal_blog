@@ -12,3 +12,18 @@
     padding: 0px 30px;
     line-height: 1.1em;
 }
+
+.blogBody a {
+    color: orange;
+}
+
+.blogBody a:hover {
+    text-decoration: underline;
+}
+
+.blogBody blockquote {
+    border-left: 3px solid rgba(255, 255, 255, 0.662);
+    padding-left: 20px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.662)
+}
