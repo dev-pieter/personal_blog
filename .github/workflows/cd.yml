@@ -35,4 +35,4 @@ jobs:
 
       - name: Restart server application
         run: |
-          pm2 restart blog
+          pm2 restart blog || pm2 start yarn --name "blog" -- start
