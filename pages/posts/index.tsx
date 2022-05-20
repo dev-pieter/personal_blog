@@ -11,26 +11,33 @@ import { ReadTimeResults } from "reading-time";
 import PostCard from "../../shared/components/BlogComponents/PostCard";
 import { api } from "../../shared/controllers/postController";
 import { BlogArticleType } from "../../shared/controllers/types";
+import { config } from "../../blog.config";
+import SEO from "../../shared/components/Seo";
 
 interface Props {
   posts: BlogArticleType[];
+  category: string;
 }
 
-const Index: NextPage<Props> = ({ posts }) => {
+function capitalizeFirstLetter(string: string): string {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const Index: NextPage<Props> = ({ posts, category }) => {
   const router = useRouter();
 
   return (
     <Stack>
+      <SEO title={capitalizeFirstLetter(category)} />
       {!posts.length && (
         <Stack>
           <Center gap="10px">
             <Text>No posts yet. Please stand by</Text>
-            <Spinner />
           </Center>
           <Center gap="5px">
             Have post ideas? Get in contact -
-            <Link href="mailto:pieter_nortje@outlook.com">
-              pieter_nortje@outlook.com
+            <Link href={`mailto:${config.author_email}`}>
+              {config.author_email}
             </Link>
           </Center>
         </Stack>
@@ -54,7 +61,9 @@ const Index: NextPage<Props> = ({ posts }) => {
   );
 };
 
-export const getServerSideProps = ({ query }: GetServerSidePropsContext) => {
+export const getServerSideProps = async ({
+  query,
+}: GetServerSidePropsContext) => {
   const category = query?.category;
 
   const posts: BlogArticleType[] = api.getArticlesByCategory(
@@ -72,7 +81,7 @@ export const getServerSideProps = ({ query }: GetServerSidePropsContext) => {
   );
 
   return {
-    props: { posts },
+    props: { posts, category },
   };
 };
 

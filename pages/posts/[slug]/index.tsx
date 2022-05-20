@@ -1,13 +1,9 @@
-import { Stack, Text } from "@chakra-ui/react";
-import {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  NextPage,
-  NextPageContext,
-} from "next";
+import { Stack } from "@chakra-ui/react";
+import { GetStaticPropsContext, NextPage } from "next";
 import React from "react";
+
 import PostBody from "../../../shared/components/BlogComponents/PostBody";
-import PostCard from "../../../shared/components/BlogComponents/PostCard";
+import SEO from "../../../shared/components/Seo";
 import { api } from "../../../shared/controllers/postController";
 import { BlogArticleType } from "../../../shared/controllers/types";
 
@@ -18,6 +14,11 @@ interface Props {
 const index: NextPage<Props> = ({ post }) => {
   return (
     <Stack>
+      <SEO
+        title={post.title as string}
+        description={post.description as string}
+        image={post.imageUrl as string}
+      />
       <PostBody
         title={post.title as string}
         content={post.content as string}
@@ -27,7 +28,7 @@ const index: NextPage<Props> = ({ post }) => {
   );
 };
 
-export const getServerSideProps = ({ params }: GetServerSidePropsContext) => {
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const slug = params?.slug;
 
   const post: BlogArticleType = api.getArticleBySlug(slug as string, [
@@ -42,6 +43,15 @@ export const getServerSideProps = ({ params }: GetServerSidePropsContext) => {
   return {
     props: { post },
   };
+};
+
+export const getStaticPaths = async () => {
+  const posts: BlogArticleType[] = api.getAllArticles(["slug"]);
+  const paths = posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return { paths, fallback: false };
 };
 
 export default index;

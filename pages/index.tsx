@@ -6,6 +6,7 @@ import { ReadTimeResults } from "reading-time";
 
 import PostBody from "../shared/components/BlogComponents/PostBody";
 import PostCard from "../shared/components/BlogComponents/PostCard";
+import SEO from "../shared/components/Seo";
 import { api } from "../shared/controllers/postController";
 import { BlogArticleType } from "../shared/controllers/types";
 
@@ -18,11 +19,10 @@ const Blog: NextPage<Props> = ({ post, latestPosts }) => {
   const router = useRouter();
   return (
     <>
-      {/* <SEO
-        title="Home"
-        description={markdown.slice(0, markdown.indexOf(`\n`))}
-        image="https://blog.devpieter.co.za/site_image.png"
-      /> */}
+      <SEO
+        title={post.title as string}
+        description={post.description as string}
+      />
       <Center>
         <Stack>
           <Center>
@@ -33,7 +33,7 @@ const Blog: NextPage<Props> = ({ post, latestPosts }) => {
               </Text>
               <PostCard
                 history={router}
-                postLink={`posts/${latestPosts[0].tags[0]}/${latestPosts[0].slug}`}
+                postLink={`posts/${latestPosts[0].slug}`}
                 heading={latestPosts[0].title}
                 url={latestPosts[0].imageUrl}
                 renderIntroBody={() => (
@@ -54,8 +54,12 @@ const Blog: NextPage<Props> = ({ post, latestPosts }) => {
   );
 };
 
-export const getServerSideProps = () => {
-  const post = api.getArticleBySlug("home", ["content", "title"]);
+export const getStaticProps = () => {
+  const post = api.getArticleBySlug("home", [
+    "content",
+    "title",
+    "description",
+  ]);
   const latestPosts = api.getAllArticles([
     "content",
     "title",
