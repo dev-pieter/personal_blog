@@ -4,8 +4,8 @@ description: |
   Hi all, and weclome to my thoughts. I created this blog just to document, and share my findings throughout my Software Engineering career. One of the purposes of having this blog is actually to force myself to learn more, and explore new areas in software as a whole. So I hope you enjoy these articles and find them helpful.
 date: "14 Apr, 2021"
 slug: "home"
-ogImage:
-  url: "/images/articles/introducing-blog-with-nextjs.jpeg"
+tags: [Software Engineering, Home Post]
+imageUrl: "/icon.png"
 ---
 
 Hi all, and weclome to my thoughts. I created this blog just to document, and share my findings throughout my Software Engineering career. One of the purposes of having this blog is actually to force myself to learn more, and explore new areas in software as a whole. So I hope you enjoy these articles and find them helpful.
