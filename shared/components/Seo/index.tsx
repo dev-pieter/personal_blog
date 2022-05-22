@@ -66,6 +66,7 @@ const SEO: FunctionComponent<Props> = ({ description, lang, title, image }) => {
   return (
     <Head>
       <title>{title} | dev-pieter</title>
+      <link rel="icon" href="/site_icon.png" />
       {metaTags.map((tag) => (
         <meta key={tag.name ?? tag.property} {...tag} />
       ))}

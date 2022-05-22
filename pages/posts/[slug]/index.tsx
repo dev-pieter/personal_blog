@@ -23,6 +23,9 @@ const index: NextPage<Props> = ({ post }) => {
         title={post.title as string}
         content={post.content as string}
         imageUrl={post.imageUrl as string}
+        author={post.author as string}
+        date={post.date as string}
+        tags={post.tags as string[]}
       />
     </Stack>
   );
@@ -38,6 +41,8 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     "description",
     "timeReading",
     "date",
+    "author",
+    "tags",
   ]);
 
   return {

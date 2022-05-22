@@ -4,6 +4,7 @@ import {
   Heading,
   HStack,
   Image,
+  Spacer,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -50,6 +51,7 @@ const PostCard = (props: any) => {
             </Box>
           </HStack>
         </Stack>
+        <Spacer />
         <Box width={"130px"} height={"130px"} maxW={"100%"}>
           <Image
             alt={props.heading}
