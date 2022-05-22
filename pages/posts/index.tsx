@@ -3,6 +3,7 @@ import {
   Center,
   HStack,
   Link,
+  SimpleGrid,
   Spacer,
   Stack,
   Text,
@@ -68,9 +69,12 @@ const Index: NextPage<Props> = ({
       ) : (
         <>
           <Text>Filter by tag</Text>
-          <HStack>
+          <SimpleGrid minChildWidth={"150px"} gap="5px">
             {allTagsFromCategory.map((tag) => (
               <Badge
+                title={tag}
+                overflow={"hidden"}
+                textOverflow={"ellipsis"}
                 cursor={"pointer"}
                 onClick={() => toggleTagOnFilter(tag)}
                 key={tag}
@@ -81,7 +85,7 @@ const Index: NextPage<Props> = ({
                 {tag}
               </Badge>
             ))}
-          </HStack>
+          </SimpleGrid>
           <hr />
           {posts
             .filter((post) => {
@@ -115,8 +119,7 @@ const Index: NextPage<Props> = ({
 export const getServerSideProps = async ({
   query,
 }: GetServerSidePropsContext) => {
-  const category = query?.category;
-  const tag = query?.tag;
+  const { category, tag } = query;
 
   const fields = [
     "title",
@@ -130,9 +133,7 @@ export const getServerSideProps = async ({
     "tags",
   ];
 
-  const posts: BlogArticleType[] = tag
-    ? api.getArticlesByTag(tag as string, fields)
-    : category
+  const posts: BlogArticleType[] = category
     ? api.getArticlesByCategory(category as string, fields)
     : api.getAllArticles(fields);
 
