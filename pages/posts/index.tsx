@@ -24,6 +24,7 @@ import PostCard from "../../shared/components/BlogComponents/PostCard";
 import SEO from "../../shared/components/Seo";
 import { api } from "../../shared/controllers/postController";
 import { BlogArticleType } from "../../shared/controllers/types";
+import styles from "./posts.module.css";
 
 interface Props {
   posts: BlogArticleType[];
@@ -82,7 +83,7 @@ const Index: NextPage<Props> = ({
         </Stack>
       ) : (
         <>
-          <details>
+          <details className={styles.details}>
             <summary style={{ display: "block" }}>
               <HStack>
                 <Heading fontFamily={"monospace"}>Posts</Heading>
@@ -94,6 +95,7 @@ const Index: NextPage<Props> = ({
                   <FiFilter />
                   <Text>Filters</Text>
                 </HStack>
+                <Text color={"gray.400"}>{tagFilter.length} active</Text>
               </HStack>
             </summary>
             <Stack padding={"10px"} gap="10px">
