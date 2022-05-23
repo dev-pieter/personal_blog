@@ -85,34 +85,36 @@ const Index: NextPage<Props> = ({
         <>
           <details className={styles.details}>
             <summary style={{ display: "block" }}>
-              <HStack>
-                <Heading fontFamily={"monospace"}>Posts</Heading>
-                <Spacer />
-                <HStack
-                  cursor={"pointer"}
-                  _hover={{ textDecoration: "underline", color: "orange" }}
-                >
-                  <FiFilter />
-                  <Text>Filters</Text>
+              <Stack>
+                <HStack>
+                  <Heading fontFamily={"monospace"}>Posts</Heading>
+                  <Spacer />
+                  <HStack
+                    cursor={"pointer"}
+                    _hover={{ textDecoration: "underline", color: "orange" }}
+                  >
+                    <FiFilter />
+                    <Text>Filters</Text>
+                  </HStack>
+                  <Text color={"gray.400"}>{tagFilter.length} active</Text>
                 </HStack>
-                <Text color={"gray.400"}>{tagFilter.length} active</Text>
-              </HStack>
+                <InputGroup border={"none"}>
+                  <InputLeftElement>
+                    <FaSearch />
+                  </InputLeftElement>
+                  <Input
+                    borderRadius={"full"}
+                    placeholder="Search Posts"
+                    value={searchString ?? ""}
+                    onChange={(value) =>
+                      setSearchString(value.currentTarget.value)
+                    }
+                    variant="outline"
+                  ></Input>
+                </InputGroup>
+              </Stack>
             </summary>
             <Stack padding={"10px"} gap="10px">
-              <InputGroup border={"none"}>
-                <InputLeftElement>
-                  <FaSearch />
-                </InputLeftElement>
-                <Input
-                  borderRadius={"full"}
-                  placeholder="Search Posts"
-                  value={searchString ?? ""}
-                  onChange={(value) =>
-                    setSearchString(value.currentTarget.value)
-                  }
-                  variant="outline"
-                ></Input>
-              </InputGroup>
               <Text>Categories</Text>
               <SimpleGrid gap="5px">
                 {categories?.map((tag) => (

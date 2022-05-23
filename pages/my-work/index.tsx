@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Heading,
   HStack,
   Link,
@@ -10,9 +9,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-import React, { useEffect, useState } from "react";
-import { FaGithub, FaGithubAlt } from "react-icons/fa";
-import ReactMarkdown from "react-markdown";
+import React from "react";
+import { FaBuilding, FaGlobeAfrica } from "react-icons/fa";
+
 import PostBody from "../../shared/components/BlogComponents/PostBody";
 import SEO from "../../shared/components/Seo";
 import { ghApi, GHRepos, GHUser } from "../../shared/controllers/gitController";
@@ -31,7 +30,7 @@ const Index: NextPage<Props> = ({ user, repos, readme }) => {
   return (
     <>
       <SEO title="My Work" image={user.avatar_url}></SEO>
-      <Stack border={"1px solid white"} padding="20px" gap={"20px"}>
+      <Stack gap={"20px"}>
         <HStack gap="25px">
           <Avatar
             name={user.login}
@@ -41,7 +40,14 @@ const Index: NextPage<Props> = ({ user, repos, readme }) => {
           ></Avatar>
           <Stack>
             <Heading fontFamily={"monospace"}>{user.login}</Heading>
-            <Text color={"gray.400"}>{user.location}</Text>
+            <HStack color={"gray.400"}>
+              <FaGlobeAfrica />
+              <Text>{user.location}</Text>
+            </HStack>
+            <HStack color={"gray.400"}>
+              <FaBuilding />
+              <Text>{user.company}</Text>
+            </HStack>
           </Stack>
           <Spacer />
         </HStack>
