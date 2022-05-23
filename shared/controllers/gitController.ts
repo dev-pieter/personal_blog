@@ -18,6 +18,7 @@ export interface GHUser {
   url: string;
   html_url: string;
   location: string;
+  company: string;
 }
 
 export interface GHRepos {

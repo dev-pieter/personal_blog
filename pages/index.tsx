@@ -1,10 +1,12 @@
-import { Box, Center, Heading, Stack, Text } from "@chakra-ui/react";
-import axios from "axios";
+import { Center, Heading, HStack, Spacer, Stack, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { FaAd, FaCode, FaPage4 } from "react-icons/fa";
 import { ReadTimeResults } from "reading-time";
 
+import { config } from "../blog.config";
 import PostBody from "../shared/components/BlogComponents/PostBody";
 import PostCard from "../shared/components/BlogComponents/PostCard";
 import SEO from "../shared/components/Seo";
@@ -26,13 +28,31 @@ const Blog: NextPage<Props> = ({ post, latestPosts }) => {
         description={post.description as string}
       />
       <Center>
-        <Stack>
+        <Stack spacing={"20px"}>
+          <Heading fontFamily={"monospace"}>What To Expect...</Heading>
+          <hr />
           <Center>
-            <Stack spacing={"20px"} color={"black"}>
+            <Stack spacing={"20px"}>
               <PostBody content={post.content as string}></PostBody>
-              <Text fontSize={"20px"} color="white" fontWeight={"bold"}>
-                Latest Post
-              </Text>
+              <HStack>
+                <Heading fontFamily={"monospace"}>Latest Post</Heading>
+                <Spacer />
+                <HStack
+                  _hover={{ color: "orange", textDecoration: "underline" }}
+                >
+                  <Link
+                    href={
+                      config.blog_categories.find((item) =>
+                        item.path.includes("posts")
+                      )?.path ?? "/"
+                    }
+                  >
+                    Browse all
+                  </Link>
+                  <FaCode />
+                </HStack>
+              </HStack>
+              <hr />
               <PostCard
                 history={router}
                 postLink={`posts/${latestPosts[0].slug}`}
