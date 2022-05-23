@@ -1,7 +1,8 @@
 import { Box, Center, Heading, Stack, Text } from "@chakra-ui/react";
+import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReadTimeResults } from "reading-time";
 
 import PostBody from "../shared/components/BlogComponents/PostBody";
@@ -17,6 +18,7 @@ export interface Props {
 
 const Blog: NextPage<Props> = ({ post, latestPosts }) => {
   const router = useRouter();
+
   return (
     <>
       <SEO
