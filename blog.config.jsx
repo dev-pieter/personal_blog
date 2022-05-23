@@ -1,5 +1,5 @@
-import { FaGraduationCap } from "react-icons/fa";
-import { FiCode } from "react-icons/fi";
+import { FaGraduationCap, FaUser } from "react-icons/fa";
+import { FiCode, FiUser } from "react-icons/fi";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 
@@ -24,14 +24,14 @@ export const config = {
       icon: <AiFillHome />,
     },
     {
-      name: "daily-dev",
-      path: "/posts?category=daily-dev",
+      name: "posts",
+      path: "/posts",
       icon: <FiCode />,
     },
     {
-      name: "tutorials",
-      path: "/posts?category=tutorials",
-      icon: <FaGraduationCap />,
+      name: "my-work",
+      path: "/my-work",
+      icon: <FiUser />,
     },
   ],
 };

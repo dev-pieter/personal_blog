@@ -1,7 +1,11 @@
 import {
   Badge,
   Center,
+  Heading,
   HStack,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Link,
   SimpleGrid,
   Spacer,
@@ -11,6 +15,8 @@ import {
 import { GetServerSidePropsContext, NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { FiFilter } from "react-icons/fi";
 import { ReadTimeResults } from "reading-time";
 
 import { config } from "../../blog.config";
@@ -24,6 +30,8 @@ interface Props {
   allTagsFromCategory: string[];
   category?: string;
   queryTag?: string;
+  categories?: string[];
+  search?: string;
 }
 
 function capitalizeFirstLetter(string: string): string {
@@ -35,10 +43,16 @@ const Index: NextPage<Props> = ({
   category,
   queryTag,
   allTagsFromCategory,
+  categories,
+  search,
 }) => {
   const router = useRouter();
+
+  const [searchString, setSearchString] = useState<string | null>(
+    search ?? null
+  );
   const [tagFilter, setTagFilter] = useState<string[]>(
-    queryTag ? [queryTag] : []
+    queryTag ? [queryTag] : category ? [category] : []
   );
 
   const toggleTagOnFilter = (tag: string) => {
@@ -68,32 +82,93 @@ const Index: NextPage<Props> = ({
         </Stack>
       ) : (
         <>
-          <Text>Filter by tag</Text>
-          <SimpleGrid minChildWidth={"150px"} gap="5px">
-            {allTagsFromCategory.map((tag) => (
-              <Badge
-                title={tag}
-                overflow={"hidden"}
-                textOverflow={"ellipsis"}
-                cursor={"pointer"}
-                onClick={() => toggleTagOnFilter(tag)}
-                key={tag}
-                variant={tagFilter.includes(tag) ? "solid" : "outline"}
-                color={"white"}
-                p="6px 12px"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </SimpleGrid>
+          <details>
+            <summary style={{ display: "block" }}>
+              <HStack>
+                <Heading fontFamily={"monospace"}>Posts</Heading>
+                <Spacer />
+                <HStack
+                  cursor={"pointer"}
+                  _hover={{ textDecoration: "underline", color: "orange" }}
+                >
+                  <FiFilter />
+                  <Text>Filters</Text>
+                </HStack>
+              </HStack>
+            </summary>
+            <Stack padding={"10px"} gap="10px">
+              <InputGroup border={"none"}>
+                <InputLeftElement>
+                  <FaSearch />
+                </InputLeftElement>
+                <Input
+                  borderRadius={"full"}
+                  placeholder="Search Posts"
+                  value={searchString ?? ""}
+                  onChange={(value) =>
+                    setSearchString(value.currentTarget.value)
+                  }
+                  variant="outline"
+                ></Input>
+              </InputGroup>
+              <Text>Categories</Text>
+              <SimpleGrid gap="5px">
+                {categories?.map((tag) => (
+                  <Badge
+                    width={"180px"}
+                    textAlign={"center"}
+                    borderRadius={"full"}
+                    title={tag}
+                    overflow={"hidden"}
+                    textOverflow={"ellipsis"}
+                    cursor={"pointer"}
+                    onClick={() => toggleTagOnFilter(tag)}
+                    key={tag}
+                    variant={tagFilter.includes(tag) ? "solid" : "outline"}
+                    color={"white"}
+                    p="6px 12px"
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </SimpleGrid>
+              <Text>Tags</Text>
+              <SimpleGrid minChildWidth={"150px"} gap="5px">
+                {allTagsFromCategory.map((tag) => (
+                  <Badge
+                    textAlign={"center"}
+                    borderRadius={"full"}
+                    title={tag}
+                    overflow={"hidden"}
+                    textOverflow={"ellipsis"}
+                    cursor={"pointer"}
+                    onClick={() => toggleTagOnFilter(tag)}
+                    key={tag}
+                    variant={tagFilter.includes(tag) ? "solid" : "outline"}
+                    color={"white"}
+                    p="6px 12px"
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </SimpleGrid>
+            </Stack>
+          </details>
           <hr />
           {posts
             .filter((post) => {
               return tagFilter.length === 0
                 ? true
-                : (post.tags as string[]).some((item) =>
-                    tagFilter.includes(item)
+                : (post.tags.concat(post.category as string) as string[]).some(
+                    (item) => tagFilter.includes(item)
                   );
+            })
+            .filter((post) => {
+              return searchString
+                ? (post.title as string)
+                    .toLowerCase()
+                    .includes(searchString.toLowerCase())
+                : true;
             })
             .map((post) => (
               <PostCard
@@ -119,7 +194,7 @@ const Index: NextPage<Props> = ({
 export const getServerSideProps = async ({
   query,
 }: GetServerSidePropsContext) => {
-  const { category, tag } = query;
+  const { category, tag, search } = query;
 
   const fields = [
     "title",
@@ -133,13 +208,15 @@ export const getServerSideProps = async ({
     "tags",
   ];
 
-  const posts: BlogArticleType[] = category
-    ? api.getArticlesByCategory(category as string, fields)
-    : api.getAllArticles(fields);
+  const posts: BlogArticleType[] = api.getAllArticles(fields);
 
   let allTagsFromCategory: string[] = [];
+  let categories: string[] = [];
 
   posts.map((post) => {
+    if (post.category) {
+      categories.push(post.category as string);
+    }
     allTagsFromCategory = [
       ...(Array.from(
         new Set((post.tags as string[]).concat(allTagsFromCategory))
@@ -152,7 +229,9 @@ export const getServerSideProps = async ({
       posts,
       category: category ?? null,
       queryTag: tag ?? null,
+      search: search ?? null,
       allTagsFromCategory,
+      categories,
     },
   };
 };

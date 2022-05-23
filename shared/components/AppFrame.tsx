@@ -8,6 +8,7 @@ import {
   Spinner,
   Link,
   Skeleton,
+  Tooltip,
 } from "@chakra-ui/react";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -23,8 +24,8 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
   const [activeUrl, setActiveUrl] = useState<string>("");
 
   useEffect(() => {
-    setActiveUrl(router.asPath);
-  }, [router.asPath]);
+    setActiveUrl(router.pathname);
+  }, [router.pathname]);
 
   return (
     <>
@@ -55,6 +56,7 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
             {config.blog_categories.map((cat) => (
               <HStack
                 key={cat.name}
+                fontSize={"xl"}
                 pr={4}
                 onClick={() => router.push(`${cat.path}`)}
                 cursor={"pointer"}
@@ -66,8 +68,9 @@ const AppFrame: FunctionComponent<Props> = ({ children }) => {
                 _hover={{ color: "orange", textDecoration: "underline" }}
                 color="white"
               >
-                <Text>{cat.icon}</Text>
-                <Text>{cat.name}</Text>
+                <Tooltip label={cat.name}>
+                  <Text>{cat.icon}</Text>
+                </Tooltip>
               </HStack>
             ))}
           </HStack>
