@@ -3,7 +3,7 @@ title: "GitHub Actions as a CI/CD solution"
 description: |
   For all the DevOps gurus out there, this is not a post for you. I am seeking the less experienced. People like me who are fairly skilled in both front and back-end development but leave it up to "the pros" for setting up our production environments and optimising the nitty-gritty. The aim of this post is to "bliss the flames" of what could only be a disastrous CI/CD setup.
 date: "22 Jan, 2022"
-tags: [Tutorial, GitHub, CI/CD, DevOps]
+tags: [GitHub, CI/CD, DevOps]
 author: "Pieter Nortje"
 category: "tutorials"
 slug: "github-actions-as-a-ci-cd-solution"

@@ -4,6 +4,7 @@ import {
   Heading,
   HStack,
   Image,
+  Link,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -13,6 +14,7 @@ import SyntaxHighlight from "./SyntaxHighlight";
 
 import styles from "./postStyles.module.css";
 import { useRouter } from "next/router";
+import { FaGithub } from "react-icons/fa";
 
 interface Props {
   title?: string;
@@ -21,6 +23,7 @@ interface Props {
   imageUrl?: string;
   author?: string;
   date?: string;
+  repoLink?: string;
 }
 
 const PostBody: FunctionComponent<Props> = ({
@@ -30,6 +33,7 @@ const PostBody: FunctionComponent<Props> = ({
   imageUrl,
   author,
   date,
+  repoLink,
 }): JSX.Element => {
   const router = useRouter();
 
@@ -50,6 +54,14 @@ const PostBody: FunctionComponent<Props> = ({
         <Text color={"gray.400"}>
           {author} {date && `- ${date}`}
         </Text>
+      )}
+      {repoLink && (
+        <HStack>
+          <FaGithub />
+          <Link href={repoLink} target="_blank">
+            Repo link
+          </Link>
+        </HStack>
       )}
       {tags && (
         <HStack>
