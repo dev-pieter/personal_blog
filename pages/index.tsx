@@ -29,30 +29,34 @@ const Blog: NextPage<Props> = ({ post, latestPosts }) => {
       />
       <Center>
         <Stack spacing={"20px"}>
-          <Heading fontFamily={"monospace"}>What To Expect...</Heading>
-          <hr />
+          <Stack>
+            <Heading fontFamily={"monospace"}>What To Expect...</Heading>
+            <hr />
+          </Stack>
           <Center>
-            <Stack spacing={"20px"}>
+            <Stack spacing={"30px"}>
               <PostBody content={post.content as string}></PostBody>
-              <HStack>
-                <Heading fontFamily={"monospace"}>Latest Post</Heading>
-                <Spacer />
-                <HStack
-                  _hover={{ color: "orange", textDecoration: "underline" }}
-                >
-                  <Link
-                    href={
-                      config.blog_categories.find((item) =>
-                        item.path.includes("posts")
-                      )?.path ?? "/"
-                    }
+              <Stack>
+                <HStack>
+                  <Heading fontFamily={"monospace"}>Latest Post</Heading>
+                  <Spacer />
+                  <HStack
+                    _hover={{ color: "orange", textDecoration: "underline" }}
                   >
-                    Browse all
-                  </Link>
-                  <FaCode />
+                    <Link
+                      href={
+                        config.blog_categories.find((item) =>
+                          item.path.includes("posts")
+                        )?.path ?? "/"
+                      }
+                    >
+                      Browse all
+                    </Link>
+                    <FaCode />
+                  </HStack>
                 </HStack>
-              </HStack>
-              <hr />
+                <hr />
+              </Stack>
               <PostCard
                 history={router}
                 postLink={`posts/${latestPosts[0].slug}`}

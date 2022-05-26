@@ -235,7 +235,7 @@ export const getServerSideProps = async ({
       queryTag: tag ?? null,
       search: search ?? null,
       allTagsFromCategory,
-      categories,
+      categories: Array.from(new Set(categories)),
     },
   };
 };
