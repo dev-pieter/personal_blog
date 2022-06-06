@@ -1,6 +1,5 @@
 import {
   Box,
-  Center,
   Heading,
   HStack,
   Image,
@@ -8,7 +7,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React, { useContext } from "react";
+import React from "react";
+import Link from "next/link";
 
 const PostCard = (props: any) => {
   //   const darkMode = useContext(ColorContext);
@@ -67,17 +67,13 @@ const PostCard = (props: any) => {
         {props.renderIntroBody && (
           <Box pt={"10px"}>
             {props.renderIntroBody()}
-            <Text
-              textDecoration={"underline"}
-              _hover={{ color: "orange" }}
-              cursor={"pointer"}
-              onClick={() => props.history.push(props.postLink)}
-              pt={"5px"}
-              pb={"28px"}
-              width={"fit-content"}
+            <Box
+              color={"orange"}
+              pt="10px"
+              _hover={{ textDecoration: "underline" }}
             >
-              Read more
-            </Text>
+              <Link href={props.postLink}>Read more</Link>
+            </Box>
           </Box>
         )}
       </Box>
