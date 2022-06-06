@@ -4,13 +4,13 @@ import {
   Heading,
   HStack,
   Image,
-  Link,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import React, { FunctionComponent } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlight from "./SyntaxHighlight";
+import Link from "next/link";
 
 import styles from "./postStyles.module.css";
 import { useRouter } from "next/router";
@@ -66,15 +66,9 @@ const PostBody: FunctionComponent<Props> = ({
       {tags && (
         <HStack>
           {tags.map((tag) => (
-            <Text
-              color={"gray.400"}
-              cursor={"pointer"}
-              _hover={{ color: "orange" }}
-              key={tag}
-              onClick={() => router.push(`/posts?tag=${tag}`)}
-            >
-              #{tag}
-            </Text>
+            <Link key={`${tag}`} href={`/posts?tag=${tag}`}>
+              {`#${tag}`}
+            </Link>
           ))}
         </HStack>
       )}
